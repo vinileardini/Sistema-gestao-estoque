@@ -1,0 +1,41 @@
+{
+    "usuarios":[
+        {
+            "id":1,
+            "nome":"Ana Silva",
+            "email":"ana.silva@example.com"
+        },
+        {
+            "id":2,
+            "nome":"Bruno Cabral",
+            "email":"bruno.cabral@example.com"
+        },
+        {
+            "id":3,
+            "nome":"Carla Dias",
+            "email":"carla.dias@example.com"
+        },
+        {
+            "id":4,
+            "nome":"Diego Faria",
+            "email":"diego.faria@example.com"
+        },
+        {
+            "id":5,
+            "nome":"Eduarda Ribeiro",
+            "email":"eduarda.ribeiro@example.com"
+        }
+    ],
+    "12874":{
+        "itens":[
+            "dsa",
+            "oi"
+        ]
+    },
+    "678":{
+        "itens":[
+            1,
+            2
+        ]
+    }
+}
