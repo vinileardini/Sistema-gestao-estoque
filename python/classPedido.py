@@ -2,6 +2,7 @@ from datetime import date
 import json
 import tempfile
 import shutil
+import os
 
 #Feito
 
@@ -11,22 +12,29 @@ class Pedido:
         
         self.__numeroPedido = numeroPedido
         self.__itensPedido = itens
-        data = date.today()
         
+    
+    #Feito
     
     def realizarPedido(self):
         
         dadosPedido = {'itens':self.__itensPedido}
         
-        with open('arquivos\pedidos.json','r',encoding='utf-8') as saida, \
+        with open('arquivos\pedidos.json','r') as saida, \
                 tempfile.NamedTemporaryFile('w',delete=False) as out:
+                    
+                dados = json.load(saida)
+                
+                if not dados:
+                    novoDado={}
+                    novoDado[self.__numeroPedido] = dadosPedido
+                    json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                    
+                else:
+                    dados[f'{self.__numeroPedido}'] = dadosPedido
+                    json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
             
-            dados = json.load(saida)
-        
-            dados[f'{self.__numeroPedido}'] = dadosPedido
-            
-            json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-        
+        #
         shutil.move(out.name,'arquivos\pedidos.json')
             
 #Feito
