@@ -41,7 +41,7 @@ class Fornecedor:
                 
                 
 #Feito
-def getNome(nome):
+def getInfo(nome):
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivo:
         
@@ -58,7 +58,7 @@ def getNome(nome):
     
 
 
-
+#Feito
 def setEmailFornecedor(nome,novoEmail):
     
     with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
@@ -68,16 +68,44 @@ def setEmailFornecedor(nome,novoEmail):
     
         if nome in conteudoArquivo:
             conteudoArquivo[nome]["email"] = novoEmail
+            json.dump(conteudoArquivo,alteracaoEmail,ensure_ascii=False,indent=4)
     
         else:
             print('Não existe fornecedor com esse nome')   
             
     shutil.move(alteracaoEmail.name,'arquivos\cadastroFornecedor.json') 
 
-def setTelefoneFornecedor(self,novoTelefone):
+#Feito
+def setTelefoneFornecedor(nome,novoTelefone):
     
-    self.telefoneFornecedor = novoTelefone
+    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+        tempfile.NamedTemporaryFile('w',delete=False) as alteracaoTelefone:
+            
+        conteudoArquivo = json.load(arquivo)
+        
+        if nome in conteudoArquivo:
+            conteudoArquivo[nome]["telefone"] = novoTelefone
+            json.dump(conteudoArquivo,alteracaoTelefone,ensure_ascii=False,indent=4)
+        
+        else:
+            print('Não existe fornecedor com esse nome')     
 
+    shutil.move(alteracaoTelefone.name,'arquivos\cadastroFornecedor.json')
+
+#Feito
+def setProdutosFornecedor(nome,produtos=[]):
     
-        
-        
+    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+        tempfile.NamedTemporaryFile('w',delete=False) as alteraProduto:
+            
+            conteudoArquivo = json.load(arquivo)
+            
+            if nome in conteudoArquivo:
+                conteudoArquivo[nome]["produtos"] = produtos
+                json.dump(conteudoArquivo,alteraProduto,ensure_ascii=False,indent=4)
+            
+            else:
+                print('Não existe fornecedor com esse nome')
+            
+    shutil.move(alteraProduto.name,'arquivos\cadastroFornecedor.json')
+                

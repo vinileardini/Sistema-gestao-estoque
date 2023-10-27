@@ -1,0 +1,18 @@
+{
+    "a": {
+        "telefone": 123,
+        "email": "abc@gmail.com",
+        "produtos": [
+            "asd",
+            "dsads"
+        ]
+    },
+    "b": {
+        "telefone": 456,
+        "email": "def@gmail.com",
+        "produtos": [
+            "oi",
+            "tchau"
+        ]
+    }
+}

@@ -1,5 +1,7 @@
-import os
-import pathlib
+
+import tempfile
+import shutil
+import json
 
 
 class Produto:
@@ -9,38 +11,71 @@ class Produto:
         self.nomeProduto = nome
         self.categoriaProduto = categoria
         self.precoVenda = precoVenda
-        self.__quantidade = quantidadeProduto
-    
-    
-    
-    def setNomeProduto (self,nomeAlterado):
+        self.quantidade = quantidadeProduto
         
-        self.nomeProduto = nomeAlterado
-    
-    def getNome (self):
+    #Feito
+    def adicionarProduto(self):
         
-        return self.nomeProduto
+        with open('arquivos\estoque.json','r') as arquivo,\
+            tempfile.NamedTemporaryFile('w',delete=False) as tempProduto:
+                
+            conteudoArquivo = json.load(arquivo)
+            
+            if self.nomeProduto not in conteudoArquivo:
+                
+                dadosProduto = {'categoria':self.categoriaProduto,'preco':self.precoVenda,'quantidade':self.quantidade}
+                
+                conteudoArquivo[self.nomeProduto] = dadosProduto
+                json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
+            
+            else:
+                
+                conteudoArquivo[self.nomeProduto]["quantidade"] += self.quantidade
+                json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
+                
+        shutil.move(tempProduto.name,'arquivos\estoque.json')
+                
     
-    def setCategoria(self,alteraCategoria):
-        
-        self.categoriaProduto = alteraCategoria
+#Feito
+def getInfo(nome):
     
-    def getCategoria (self):
+    with open('arquivos\estoque.json','r') as arquivo:
         
-        return self.categoriaProduto
+        conteudoArquivo = json.load(arquivo)
+        
+        if nome in conteudoArquivo:
+            print('Produto:',conteudoArquivo[nome])
+            print('Categoria:',conteudoArquivo[nome]["categoria"])
+            print('Preço de venda:',conteudoArquivo[nome]["preco"])
+            print('Quantidade em estoque:',conteudoArquivo[nome]["quantidade"])
+    
 
-    def setPreco (self,novoPreco):
+def setCategoria(nomeProduto,novaCategoria):
+    
+    with open('arquivos\estoque.json','r') as arquivo,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempCategoria:
         
-        self.precoVenda = novoPreco
-    
-    def getPreco (self):
+        conteudoArquivo = json.load(arquivo)
         
-        return self.precoVenda
+        if nomeProduto in conteudoArquivo:
+            
+            conteudoArquivo[nomeProduto]["categoria"] = novaCategoria
+            json.dump(conteudoArquivo,tempCategoria,ensure_ascii=False,indent=4)
+        
+        else:
+            print('Não existe produto com esse nome')
     
-    def getQuantidade(self):
+    shutil.move(tempCategoria.name,'arquivos\estoque.json')
+
+'''
+def setPreco (nome,novoPreco):
     
-        return self.__quantidade
+'''
+
+
     
+
+
     
         
         
