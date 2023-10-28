@@ -40,13 +40,13 @@ classPedido.excluiPedido("678")
 '''Teste Produto
 '''
 
-prod1 = Produto('mouse','periferico',130.00,5)
-prod1.adicionarProduto()
+prod1 = Produto('mouse','logitech','perifericos',80.00,99.99,20)
+prod1.adicionarProduto(10)
 
-prod2 = Produto('camiseta','vestuario',70.00,32)
-prod2.adicionarProduto()
+prod2 = Produto("camiseta","polo","vestuario",70.00,150.00,32)
+prod2.adicionarProduto(2)
 
-produtos.getInfo('mouse')
+produtos.getInfo('mouse','logitech')
 
-produtos.setCategoria('mouse','eletronico')
-produtos.setCategoria('teclado','eletronico')
+produtos.setCategoria('mouse','logitech','periferico')
+produtos.setCategoria('mouse','razer','eletronico')
