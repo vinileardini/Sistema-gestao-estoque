@@ -34,8 +34,21 @@ class Pedido:
                     dados[f'{self.__numeroPedido}'] = dadosPedido
                     json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
             
-        #
+        
         shutil.move(out.name,'arquivos\pedidos.json')
+        
+        
+    def getNumeroPedido(self):
+        
+        print(self.__numeroPedido)
+    
+    def getItensPedido(self):
+        
+        print(self.__itensPedido)
+    
+    def setItensPedido(self,novosItens):
+        
+        self.__itensPedido = novosItens
             
 #Feito
 

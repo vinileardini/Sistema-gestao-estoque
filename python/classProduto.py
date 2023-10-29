@@ -8,12 +8,12 @@ class Produto:
     
     def __init__(self,tipoProduto,marca,categoria,precoCompra,precoVenda,quantidadeProduto):
         
-        self.tipoProduto = tipoProduto
-        self.marca = marca
-        self.categoriaProduto = categoria
-        self.precoCompra = precoCompra
-        self.precoVenda = precoVenda
-        self.quantidade = quantidadeProduto
+        self.__tipoProduto = tipoProduto
+        self.__marca = marca
+        self.__categoriaProduto = categoria
+        self.__precoCompra = precoCompra
+        self.__precoVenda = precoVenda
+        self.__quantidade = quantidadeProduto
         
     #Feito
     def adicionarProduto(self,quantidade):
@@ -23,19 +23,63 @@ class Produto:
                 
             conteudoArquivo = json.load(arquivo)
             
-            if self.tipoProduto not in conteudoArquivo:
+            if self.__tipoProduto not in conteudoArquivo:
                 
-                dadosProduto = {'marca':self.marca,'categoria':self.categoriaProduto,'preco_de_compra':self.precoCompra,'preco_de_venda':self.precoVenda,'quantidade':self.quantidade}
+                dadosProduto = {'marca':self.__marca,'categoria':self.__categoriaProduto,'preco_de_compra':self.__precoCompra,'preco_de_venda':self.__precoVenda,'quantidade':self.__quantidade}
                 
-                conteudoArquivo[self.tipoProduto] = dadosProduto
+                conteudoArquivo[self.__tipoProduto] = dadosProduto
                 json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
             
             else:
                 
-                conteudoArquivo[self.tipoProduto]["quantidade"] += quantidade
+                conteudoArquivo[self.__tipoProduto]["quantidade"] += quantidade
                 json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
                 
         shutil.move(tempProduto.name,'arquivos\estoque.json')
+        
+    def getTipo(self):
+        
+        print(self.__tipoProduto)
+    
+    def setTipo(self,novoTipo):
+        
+        self.__tipoProduto = novoTipo
+    
+    def getMarca(self):
+        
+        print(self.__marca)
+    
+    def setMarca(self,novaMarca):
+        
+        self.__marca = novaMarca
+    
+    def getCategoria(self):
+        
+        print(self.__categoriaProduto)
+        
+    def setCategoria(self,novaCategoria):
+        
+        self.__categoriaProduto = novaCategoria
+    
+    def getPrecoCompra(self):
+        
+        print(self.__precoCompra)
+    
+    def setPrecoCompra(self,novoPreco):
+        
+        self.__precoCompra = novoPreco
+    
+    def getPrecoVenda(self):
+        
+        print(self.__precoVenda)
+    
+    def setPrecoVenda(self,novoPreco):
+        
+        self.__precoVenda = novoPreco
+    
+    def getQuantidade(self):
+        
+        print(self.__quantidade)
                 
     
 #Função para retornar todas as informações sobre o produto através de pesquisa

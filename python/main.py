@@ -8,6 +8,11 @@ import classProduto as produtos
 '''Teste Fornecedor
 f1 = Fornecedor('a',123,'abc@gmail.com',['asd','dsads'])
 f1.cadastrarFornecedor()
+f1.getNome()
+f1.getProdutos()
+f1.getTelefone()
+f1.getEmail()
+
 
 f2 = Fornecedor('b',456,'def@gmail.com',['oi','tchau'])
 f2.cadastrarFornecedor()
@@ -17,8 +22,6 @@ fornecedores.getInfo('b')
 fornecedores.setTelefoneFornecedor('a',786)
 
 fornecedores.setEmailFornecedor('b','12345@gmail.com')
-
-fornecedores.getInfo('b')
 
 fornecedores.getInfo('c')
 '''
@@ -38,7 +41,7 @@ classPedido.excluiPedido("678")
 '''
 
 '''Teste Produto
-'''
+
 
 prod1 = Produto('mouse','logitech','perifericos',80.00,99.99,20)
 prod1.adicionarProduto(10)
@@ -50,3 +53,4 @@ produtos.getInfo('mouse','logitech')
 
 produtos.setCategoria('mouse','logitech','periferico')
 produtos.setCategoria('mouse','razer','eletronico')
+'''

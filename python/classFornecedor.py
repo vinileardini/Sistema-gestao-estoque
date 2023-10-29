@@ -7,15 +7,15 @@ class Fornecedor:
     
     def __init__(self,nome,telefone,email,produtos=[]):
         
-        self.nomeFornecedor = nome
-        self.telefoneFornecedor = telefone
-        self.email = email
-        self.produtos = produtos
+        self.__nomeFornecedor = nome
+        self.__telefoneFornecedor = telefone
+        self.__email = email
+        self.__produtos = produtos
         
     #Feito
     def cadastrarFornecedor(self):
         
-        dadosFornecedor = {'telefone':self.telefoneFornecedor, 'email':self.email, 'produtos':self.produtos}
+        dadosFornecedor = {'telefone':self.__telefoneFornecedor, 'email':self.__email, 'produtos':self.__produtos}
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivoFornecedores,\
             tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
@@ -24,19 +24,46 @@ class Fornecedor:
             
             if not fornecedores:
                 #verifica se já existe fornecedor com esse nome
-                if self.nomeFornecedor not in fornecedores:
+                if self.__nomeFornecedor not in fornecedores:
                     novoFornecedor = {}
-                    novoFornecedor[self.nomeFornecedor] = dadosFornecedor
+                    novoFornecedor[self.__nomeFornecedor] = dadosFornecedor
                     json.dump(novoFornecedor,tempFornecedores,ensure_ascii=False,indent=4)
                 else:
                     print('Fornecedor já existente')
                 
             else:
-                fornecedores[self.nomeFornecedor] = dadosFornecedor
+                fornecedores[self.__nomeFornecedor] = dadosFornecedor
                 json.dump(fornecedores,tempFornecedores,ensure_ascii=False,indent=4)
         
         shutil.move(tempFornecedores.name,'arquivos\cadastroFornecedor.json')
-                
+    
+    def getNome(self):
+        
+        print(self.__nomeFornecedor)
+    
+    def getEmail(self):
+    
+        print(self.__email)
+    
+    def setEmail(self,emailAlterado):
+        
+        self.__email = emailAlterado
+    
+    def getTelefone(self):
+        
+        print(self.__telefoneFornecedor)
+    
+    def setTelefone(self,telefoneAlterado):
+        
+        self.__telefoneFornecedor = telefoneAlterado
+    
+    def getProdutos(self):
+        
+        print(self.__produtos)
+    
+    def setProdutos(self,novosProdutos=[]):
+        
+        self.__produtos = novosProdutos
                 
                 
                 
