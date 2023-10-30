@@ -80,7 +80,7 @@ def getStatus(numeroPedido):
     else:
         print('Pedido inexistente')
 
-
+#Pronto
 def alteraStatus(numeroPedido,novoStatus):
     
     with open('arquivos\pedidos.json','r') as arquivoPedido,\
@@ -98,18 +98,44 @@ def alteraStatus(numeroPedido,novoStatus):
     
     shutil.move(tempPedido,'arquivos\pedidos.json')
     
+# Pronto
+def finalizaPedido(numeroPedido):
     
+    with open('arquivos\pedidos.json','r') as arquivoPedido,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempPedido:
+            
+        conteudoPedido = json.load(arquivoPedido)
+        #verifica existencia do pedido
+        if numeroPedido in conteudoPedido:
+            #verifica status do pedido
+            if conteudoPedido[numeroPedido]["status"] != "finalizado":
+                conteudoPedido[numeroPedido]["status"] = "finalizado"
+                json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+            else:
+                print('Pedido já finalizado')
+        
+        else:
+            print('Pedido inexistente')
+            
+    shutil.move(tempPedido,'arquivos\pedidos.json')
+                               
+                               
 
-
+# função para excluir um pedido (pronto)
 def excluiPedido(numeroPedido):
     
-    arquivoPedido = open('arquivos\pedidos.json','r')
-    conteudoPedido = json.load(arquivoPedido)
+    with open('arquivos\pedidos.json','r') as arquivoPedido,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempPedido:
+            
+        conteudoPedido = json.load(arquivoPedido)
     
-    if numeroPedido in conteudoPedido:
-        
-        print(f'Pedido {numeroPedido} excluido')
+        if numeroPedido in conteudoPedido:
+            #Exclui o pedido informado do dicionario
+            conteudoPedido.pop(numeroPedido)
+            print(f'Pedido {numeroPedido} excluido')
+            json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
     
-    else:
-        print('Pedido inexistente')
-        
+        else:
+            print('Pedido inexistente')
+    
+    shutil.move(tempPedido.name,'arquivos\pedidos.json')

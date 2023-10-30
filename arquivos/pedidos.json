@@ -1,18 +1,10 @@
 {
-    "12874":{
-        "tipo":"entrada",
-        "status":"aberto",
-        "itens":[
+    "12874": {
+        "tipo": "entrada",
+        "status": "aberto",
+        "itens": [
             "dsa",
             "oi"
-        ]
-    },
-    "678":{
-        "tipo":"entrada",
-        "status":"aberto",
-        "itens":[
-            1,
-            2
         ]
     }
 }
