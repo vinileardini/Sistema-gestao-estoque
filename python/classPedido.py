@@ -8,17 +8,19 @@ import os
 
 class Pedido:
     
-    def __init__(self,numeroPedido,itens=[]):
+    def __init__(self,numeroPedido,tipo,itens=[]):
         
         self.__numeroPedido = numeroPedido
+        self.__tipo = tipo
         self.__itensPedido = itens
+        self.__status = 'aberto'
         
     
     #Feito
     
     def realizarPedido(self):
         
-        dadosPedido = {'itens':self.__itensPedido}
+        dadosPedido = {'tipo': self.__tipo,'status':self.__status,'itens':self.__itensPedido}
         
         with open('arquivos\pedidos.json','r') as saida, \
                 tempfile.NamedTemporaryFile('w',delete=False) as out:
@@ -65,7 +67,39 @@ def pesquisaPedido(numeroPedido):
     else:
             print(f'Pedido {numeroPedido} inexistente')
     
+
+def getStatus(numeroPedido):
+    
+    arquivoPedido = open('arquivos\pedidos.json','r')
+    conteudoPedido = json.load(arquivoPedido)
+    
+    if numeroPedido in conteudoPedido:
         
+        print('O status do pedido é:',conteudoPedido[numeroPedido]["status"])
+    
+    else:
+        print('Pedido inexistente')
+
+
+def alteraStatus(numeroPedido,novoStatus):
+    
+    with open('arquivos\pedidos.json','r') as arquivoPedido,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempPedido:
+    
+        conteudoPedido = json.load(arquivoPedido)
+    
+        if numeroPedido in conteudoPedido:
+        
+            conteudoPedido[numeroPedido]["status"] = novoStatus
+            json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+    
+        else:
+            print('Pedido inexistente')
+    
+    shutil.move(tempPedido,'arquivos\pedidos.json')
+    
+    
+
 
 def excluiPedido(numeroPedido):
     

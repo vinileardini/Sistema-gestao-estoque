@@ -26,19 +26,19 @@ fornecedores.setEmailFornecedor('b','12345@gmail.com')
 fornecedores.getInfo('c')
 '''
 
-'''Teste Pedido
-p1 = Pedido('12874',['dsa','oi'])
+#Teste Pedido
+p1 = Pedido('12874','entrada',['dsa','oi'])
 
 p1.realizarPedido()
 
-p2 = Pedido('678',[1,2])
+p2 = Pedido('678','entrada',[1,2])
 
 p2.realizarPedido()
 
 classPedido.pesquisaPedido("12874")
 
 classPedido.excluiPedido("678")
-'''
+
 
 '''Teste Produto
 
