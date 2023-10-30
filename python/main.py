@@ -37,7 +37,9 @@ p2.realizarPedido()
 
 classPedido.pesquisaPedido("12874")
 
-classPedido.excluiPedido("678")
+classPedido.finalizaPedido("678")
+
+#classPedido.excluiPedido("678")
 
 
 '''Teste Produto

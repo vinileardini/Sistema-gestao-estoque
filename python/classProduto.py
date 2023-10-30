@@ -65,17 +65,17 @@ class Produto:
         
         print(self.__precoCompra)
     
-    def setPrecoCompra(self,novoPreco):
+    def setPrecoCompra(self,novoPrecoC):
         
-        self.__precoCompra = novoPreco
+        self.__precoCompra = novoPrecoC
     
     def getPrecoVenda(self):
         
         print(self.__precoVenda)
     
-    def setPrecoVenda(self,novoPreco):
+    def setPrecoVenda(self,novoPrecoV):
         
-        self.__precoVenda = novoPreco
+        self.__precoVenda = novoPrecoV
     
     def getQuantidade(self):
         

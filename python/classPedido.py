@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import *
 import json
 import tempfile
 import shutil
@@ -20,7 +20,8 @@ class Pedido:
     
     def realizarPedido(self):
         
-        dadosPedido = {'tipo': self.__tipo,'status':self.__status,'itens':self.__itensPedido}
+        data_e_hora = datetime.now()
+        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.__tipo,'status':self.__status,'itens':self.__itensPedido,}
         
         with open('arquivos\pedidos.json','r') as saida, \
                 tempfile.NamedTemporaryFile('w',delete=False) as out:
@@ -117,7 +118,7 @@ def finalizaPedido(numeroPedido):
         else:
             print('Pedido inexistente')
             
-    shutil.move(tempPedido,'arquivos\pedidos.json')
+    shutil.move(tempPedido.name,'arquivos\pedidos.json')
                                
                                
 
