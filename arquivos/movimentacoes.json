@@ -1,6 +1,6 @@
 {
     "12874": {
-        "data abertura": "31/10/2023 13:16:16",
+        "data abertura": "31/10/2023 13:28:27",
         "tipo": "entrada",
         "status": "aberto",
         "itens": [
@@ -9,12 +9,13 @@
         ]
     },
     "678": {
-        "data abertura": "31/10/2023 13:16:16",
+        "data abertura": "31/10/2023 13:28:27",
         "tipo": "entrada",
-        "status": "aberto",
+        "status": "finalizado",
         "itens": [
             1,
             2
-        ]
+        ],
+        "data fechamento": "31/10/2023 13:28:28"
     }
 }
