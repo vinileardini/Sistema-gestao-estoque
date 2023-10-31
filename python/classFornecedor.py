@@ -12,9 +12,6 @@ class Fornecedor:
         self.__email = email
         self.__produtos = produtos
         
-    #Feito
-    def cadastrarFornecedor(self):
-        
         dadosFornecedor = {'telefone':self.__telefoneFornecedor, 'email':self.__email, 'produtos':self.__produtos}
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivoFornecedores,\

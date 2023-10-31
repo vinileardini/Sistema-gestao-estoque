@@ -8,31 +8,28 @@ class Produto:
     
     def __init__(self,tipoProduto,marca,categoria,precoCompra,precoVenda,quantidadeProduto):
         
-        self.__tipoProduto = tipoProduto
-        self.__marca = marca
-        self.__categoriaProduto = categoria
+        self.tipoProduto = tipoProduto
+        self.marca = marca
+        self.categoriaProduto = categoria
         self.__precoCompra = precoCompra
-        self.__precoVenda = precoVenda
+        self.precoVenda = precoVenda
         self.__quantidade = quantidadeProduto
-        
-    #Feito
-    def adicionarProduto(self,quantidade):
         
         with open('arquivos\estoque.json','r') as arquivo,\
             tempfile.NamedTemporaryFile('w',delete=False) as tempProduto:
                 
             conteudoArquivo = json.load(arquivo)
             
-            if self.__tipoProduto not in conteudoArquivo:
+            if self.tipoProduto not in conteudoArquivo:
                 
-                dadosProduto = {'marca':self.__marca,'categoria':self.__categoriaProduto,'preco_de_compra':self.__precoCompra,'preco_de_venda':self.__precoVenda,'quantidade':self.__quantidade}
+                dadosProduto = {'marca':self.marca,'categoria':self.categoriaProduto,'preco_de_compra':self.__precoCompra,'preco_de_venda':self.precoVenda,'quantidade':self.__quantidade}
                 
-                conteudoArquivo[self.__tipoProduto] = dadosProduto
+                conteudoArquivo[self.tipoProduto] = dadosProduto
                 json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
             
             else:
                 
-                conteudoArquivo[self.__tipoProduto]["quantidade"] += quantidade
+                conteudoArquivo[self.tipoProduto]["quantidade"] += quantidadeProduto
                 json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
                 
         shutil.move(tempProduto.name,'arquivos\estoque.json')

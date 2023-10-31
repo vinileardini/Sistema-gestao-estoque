@@ -4,13 +4,13 @@
         "categoria": "periferico",
         "preco_de_compra": 80.0,
         "preco_de_venda": 99.99,
-        "quantidade": 140
+        "quantidade": 20
     },
     "camiseta": {
         "marca": "polo",
         "categoria": "vestuario",
         "preco_de_compra": 70.0,
         "preco_de_venda": 150.0,
-        "quantidade": 82
+        "quantidade": 32
     }
 }
