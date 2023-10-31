@@ -27,9 +27,12 @@ fornecedores.getInfo('c')
 
 #Teste Pedido
 p1 = Pedido('12874','entrada',['dsa','oi'])
+p1.getInfo()
+p1.finalizaPedido()
+
 
 p2 = Pedido('678','entrada',[1,2])
-p2.finalizaPedido()
+
 
 #classPedido.pesquisaPedido("12874")
 

@@ -77,8 +77,21 @@ class Produto:
     def getQuantidade(self):
         
         print(self.__quantidade)
-                
+        
     
+    def getInfo(self):
+        
+        print('Tipo de produto:',self.getTipo())
+        print('Marca:',self.getMarca())
+        print('Categoria:',self.getCategoria())
+        print('Preço de compra:',self.getPrecoCompra())
+        print('Preco de venda:',self.getPrecoVenda)
+        print('Quantidade',self.getQuantidade())
+                
+
+
+
+
 #Função para retornar todas as informações sobre o produto através de pesquisa
 def getInfo(tipo,marca):
     

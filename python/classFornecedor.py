@@ -36,11 +36,11 @@ class Fornecedor:
     
     def getNome(self):
         
-        print(self.__nomeFornecedor)
+        return self.__nomeFornecedor
     
     def getEmail(self):
     
-        print(self.__email)
+        return self.__email
     
     def setEmail(self,emailAlterado):
         
@@ -48,7 +48,7 @@ class Fornecedor:
     
     def getTelefone(self):
         
-        print(self.__telefoneFornecedor)
+        return self.__telefoneFornecedor
     
     def setTelefone(self,telefoneAlterado):
         
@@ -56,30 +56,40 @@ class Fornecedor:
     
     def getProdutos(self):
         
-        print(self.__produtos)
+        return self.__produtos
     
     def setProdutos(self,novosProdutos=[]):
         
         self.__produtos = novosProdutos
-                
-                
-                
-#Feito
-def getInfo(nome):
-        
-        with open('arquivos\cadastroFornecedor.json','r') as arquivo:
-        
-            conteudoArquivo = json.load(arquivo)
-        
-            if nome in conteudoArquivo:
-                print(f'O fornecedor {nome} foi encontrado')
-                print('Email para contato:',conteudoArquivo[nome]["email"])
-                print('Telefone:',conteudoArquivo[nome]["telefone"])
-                print('Produtos oferecidos:',conteudoArquivo[nome]["produtos"])
-            
-            else:
-                print('Não existe fornecedor com esse nome')
     
+    
+    def getInfo(self):
+        
+        print('Nome do fornecedor:',self.getNome())
+        print('Email:',self.getEmail())
+        print('Telefone:',self.getTelefone())
+        print('Produtos:',self.getProdutos())
+             
+                
+            
+            
+#Métodos de pesquisa fora da classe
+
+def getInfoFornecedor(nome):
+        
+    with open('arquivos\cadastroFornecedor.json','r') as arquivo:
+
+        conteudoArquivo = json.load(arquivo)
+    
+        if nome in conteudoArquivo:
+            print(f'O fornecedor {nome} foi encontrado')
+            print('Email para contato:',conteudoArquivo[nome]["email"])
+            print('Telefone:',conteudoArquivo[nome]["telefone"])
+            print('Produtos oferecidos:',conteudoArquivo[nome]["produtos"])
+        
+        else:
+            print('Não existe fornecedor com esse nome')
+
 
 
 #Feito
@@ -99,7 +109,7 @@ def setEmailFornecedor(nome,novoEmail):
             
     shutil.move(alteracaoEmail.name,'arquivos\cadastroFornecedor.json') 
 
-#Feito
+
 def setTelefoneFornecedor(nome,novoTelefone):
     
     with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
