@@ -16,7 +16,7 @@ def menu():
             inputUsuario = input('Usuario:')
             senhaUsuario = input('Senha:')
             
-            with open('arquivos\usuario.json','r') as usuarios:
+            with open('arquivos\\usuario.json','r') as usuarios:
                  
                 infoUsuarios = json.load(usuarios)
                 
@@ -24,18 +24,28 @@ def menu():
                     if infoUsuarios[inputUsuario]["senha"] == senhaUsuario:
                         print('*************************************************')
                         print('Logado com sucesso...')
-                    else:
-                        print('Usuario ou senha incorreta')
                     
                 else:
+                    print('************************** ***********************')
+                    print('Usuário ou senha incorreta')
                     print('*************************************************')
-                    print()
                     
             
         elif escolha == '2':
         
             inputNomeForn = input('Nome:')
             senhaFornecedor = input('Senha:')
+            
+            with open('arquivos\\fornecedor.json','r') as fornecedores:
+                
+                conteudoFornecedores = json.load(fornecedores)
+                
+                if inputNomeForn in conteudoFornecedores:
+                    if conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
+                        
+                        print('**************************************************')
+                        print('Logado com sucesso...')
+                        
             
         elif escolha == '0':
             print('Encerrando...')
