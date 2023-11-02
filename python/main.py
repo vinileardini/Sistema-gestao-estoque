@@ -4,6 +4,7 @@ from classPedido import Pedido
 import classPedido
 import classFornecedor as fornecedores
 import classProduto as produtos
+import menu
 
 '''Teste Fornecedor
 f1 = Fornecedor('a',123,'abc@gmail.com',['asd','dsads'])
@@ -24,8 +25,7 @@ fornecedores.setEmailFornecedor('b','12345@gmail.com')
 fornecedores.getInfo('c')
 
 '''
-
-#Teste Pedido
+'''Teste Pedido
 p1 = Pedido('12874','entrada',['dsa','oi'])
 p1.getInfo()
 p1.finalizaPedido()
@@ -40,7 +40,7 @@ p2 = Pedido('678','entrada',[1,2])
 
 #classPedido.excluiPedido("678")
 
-
+'''
 '''Teste Produto
 
 
@@ -55,3 +55,6 @@ produtos.getInfo('mouse','logitech')
 produtos.setCategoria('mouse','logitech','periferico')
 produtos.setCategoria('mouse','razer','eletronico')
 '''
+
+
+menu.menu()
