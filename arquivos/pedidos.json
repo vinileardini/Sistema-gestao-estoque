@@ -16,5 +16,27 @@
             1,
             2
         ]
+    },
+    "12456768":{
+        "data abertura":"02/11/2023 22:48:35",
+        "tipo":"entrada",
+        "status":"aberto",
+        "itens":[]
+    },
+    "124385432":{
+        "data abertura":"02/11/2023 22:50:36",
+        "tipo":"entrada",
+        "status":"aberto",
+        "itens":[]
+    },
+    "3215645":{
+        "data abertura":"02/11/2023 22:57:58",
+        "tipo":"saida",
+        "status":"aberto",
+        "itens":[
+            "parafuso",
+            "broca",
+            "martelo"
+        ]
     }
 }
