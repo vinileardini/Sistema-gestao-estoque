@@ -12,5 +12,40 @@
         "preco_de_compra": 70.0,
         "preco_de_venda": 150.0,
         "quantidade": 32
+    },
+    "teclado": {
+        "marca": "razer",
+        "categoria": "perif�rico",
+        "preco_de_compra": "130.00",
+        "preco_de_venda": "250.00",
+        "quantidade": "4"
+    },
+    "fone de ouvido": {
+        "marca": "kz",
+        "categoria": "periferico",
+        "preco_de_compra": "20.00",
+        "preco_de_venda": "50.00",
+        "quantidade": "7"
+    },
+    "celular": {
+        "marca": "iphone",
+        "categoria": "smartphone",
+        "preco_de_compra": "2500.00",
+        "preco_de_venda": "5000.00",
+        "quantidade": "6"
+    },
+    "monitor 240hz": {
+        "marca": "superframe",
+        "categoria": "monitores",
+        "preco_de_compra": "600.00",
+        "preco_de_venda": "1000.00",
+        "quantidade": "7"
+    },
+    "playstation 5": {
+        "marca": "sony",
+        "categoria": "videogame",
+        "preco_de_compra": "2500.00",
+        "preco_de_venda": "3500.00",
+        "quantidade": "10"
     }
 }

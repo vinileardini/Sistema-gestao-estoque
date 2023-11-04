@@ -1,6 +1,8 @@
 import json
 import classPedido
 from classPedido import Pedido
+from classProduto import Produto
+from classFornecedor import Fornecedor
 
 def menu():
     
@@ -40,11 +42,11 @@ def menu():
                         escolhaUsuario = input('Selecione a opção desejada:')
                         print('*************************************************')
                         
-                        
+                        # Verificar estoque
                         #if escolhaUsuario == "1":
                             
                             
-                        
+                        # Realizar pedido
                         if escolhaUsuario == "2":
                             
                             inputNumero = input('Informe o número do pedido:')
@@ -57,7 +59,7 @@ def menu():
                                 
                                 print('*************************************************')
                                 
-                                print('0 - Parar inserção de itens no pedido')
+                                print('0 - Parar inserção de novo item no pedido')
                                 print('1 - Adicionar novo item')
                                 
                                 continueItem = input('Informe sua escolha:')
@@ -68,47 +70,88 @@ def menu():
                                 print('*************************************************')
 
 
-                                
+                                   
                             print('*************************************************')
                             
                             novoPedido = Pedido(inputNumero,inputTipo,itens)
                             
                             print('Pedido criado')
+                            
+                            print('*************************************************')
+                            
                             novoPedido.getInfo()
                         
                             
-                        '''    
                         
+                        # Finalizar pedido
                         elif escolhaUsuario == "3":
                             
+                            inputNumPedido = input('Insira o número do pedido a ser finalizado:')
                             
-                        
+                            classPedido.encerrarPedido(inputNumPedido)
+                            
+                        # Verificar pedidos - lista todos
                         elif escolhaUsuario == "4":
                             
+                            classPedido.listarPedidos()
+                            
                         
-                        
+                        #Cadastro de produto
                         elif escolhaUsuario == "5":
                             
-                        
+                            inputTipo = input('Insira o tipo de item:')
+                            inputMarca = input('Insira a marca do produto:')
+                            inputCategoria = input('Insira a categoria do produto:')
+                            inputPrecoCompra = input('Insira o valor de compra do produto:')
+                            inputPrecoVenda = input('Insira o valor de venda do produto:')
+                            inputQuantidade = input('Insira a quantidade do produto:')
+                            
+                            novoProduto = Produto(inputTipo,inputMarca,inputCategoria,inputPrecoCompra,inputPrecoVenda,inputQuantidade)
+                            
+                            novoProduto.getInfo()
+                            
+                        #Cadastro de fornecedor
                         elif escolhaUsuario == "6":
                             
+                            inputNomeForn = input('Insira o nome do fornecedor:')
+                            inputTelefone = input('Insira o telefone do fornecedor:')
+                            inputEmail = input('Insira o email do fornecedor:')
+                            itensForn = []
+                            
+                            while True:
+                                
+                                novoItem = input('Insira o item fornecido:')
+                                itensForn.append(novoItem)
+                                
+                                print('*************************************************')
+                                
+                                print('0 - Parar inserção de novo item fornecido')
+                                print('1 - Adicionar novo item')
+                                
+                                escolhaCont = input('Escolha a opção desejada:')
+                                
+                                print('*************************************************')
+                                
+                                if escolhaCont == "0":
+                                    print("Encerrando")
+                                    break
+                                
+                                print('*************************************************')
                         
+                            
+                        #Verificação de movimentações
                         elif escolhaUsuario == "7":
                             
-                        
-                        
+                            classPedido.verificarMovimentacao
+                            
+                        #Encerra
                         elif escolhaUsuario == "0":
-                        
+                            
+                            print('Encerrando ...')
+                            break
                         
                         else:
-                            print("Valor inválido")
-                            
-                        
-                        
-                    
-
-                        
-                        
+                            print("Valor inválido")            
                         
                     
                 else:
@@ -116,7 +159,7 @@ def menu():
                     print('Usuário ou senha incorreta')
                     print('*************************************************')
                     
-            
+        # Login usuario
         elif escolha == '2':
         
             inputNomeForn = input('Nome:')
@@ -136,7 +179,7 @@ def menu():
         elif escolha == '0':
             print('Encerrando...')
             return False
-        '''
+        
             
     
             

@@ -36,31 +36,31 @@ class Produto:
         
     def getTipo(self):
         
-        print(self.__tipoProduto)
+        return self.tipoProduto
     
     def setTipo(self,novoTipo):
         
-        self.__tipoProduto = novoTipo
+        self.tipoProduto = novoTipo
     
     def getMarca(self):
         
-        print(self.__marca)
+        return self.marca
     
     def setMarca(self,novaMarca):
         
-        self.__marca = novaMarca
+        self.marca = novaMarca
     
     def getCategoria(self):
         
-        print(self.__categoriaProduto)
+        return self.categoriaProduto
         
     def setCategoria(self,novaCategoria):
         
-        self.__categoriaProduto = novaCategoria
+        self.categoriaProduto = novaCategoria
     
     def getPrecoCompra(self):
         
-        print(self.__precoCompra)
+        return self.__precoCompra
     
     def setPrecoCompra(self,novoPrecoC):
         
@@ -68,25 +68,25 @@ class Produto:
     
     def getPrecoVenda(self):
         
-        print(self.__precoVenda)
+        return self.precoVenda
     
     def setPrecoVenda(self,novoPrecoV):
         
-        self.__precoVenda = novoPrecoV
+        self.precoVenda = novoPrecoV
     
     def getQuantidade(self):
         
-        print(self.__quantidade)
+        return self.__quantidade
         
     
     def getInfo(self):
         
-        print('Tipo de produto:',self.getTipo())
-        print('Marca:',self.getMarca())
-        print('Categoria:',self.getCategoria())
-        print('Preço de compra:',self.getPrecoCompra())
-        print('Preco de venda:',self.getPrecoVenda)
-        print('Quantidade',self.getQuantidade())
+        print(f'Tipo de produto: {self.getTipo()}')
+        print(f'Marca: {self.getMarca()}')
+        print(f'Categoria: {self.getCategoria()}')
+        print(f'Preço de compra: {self.getPrecoCompra()}')
+        print(f'Preco de venda: {self.getPrecoVenda()}')
+        print(f'Quantidade: {self.getQuantidade()}')
                 
 
 

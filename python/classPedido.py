@@ -142,13 +142,15 @@ def encerrarPedido(numeroPedido):
                 json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
                 json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
                 
+                print('Pedido finalizado')
+                
+                shutil.move(tempPedido.name,'arquivos\pedidos.json')
+                
             else:
                 print('Pedido já finalizado')
     
         else:
             print('Pedido inexistente')
-        
-    shutil.move(tempPedido.name,'arquivos\pedidos.json')
                             
                             
 
@@ -160,7 +162,7 @@ def excluiPedido(numeroPedido):
         
         conteudoPedido = json.load(arquivoPedido)
 
-        if numeroPedido in conteudoPedido:
+        if conteudoPedido.HasKey(numeroPedido):
             #Exclui o pedido informado do dicionario
             conteudoPedido.pop(numeroPedido)
             print(f'Pedido {numeroPedido} excluido')
@@ -170,3 +172,23 @@ def excluiPedido(numeroPedido):
             print('Pedido inexistente')
 
     shutil.move(tempPedido.name,'arquivos\pedidos.json')
+
+def listarPedidos():
+    
+    with open('arquivos\pedidos.json','r') as arqPedidos:
+        
+        pedidos = json.load(arqPedidos)
+        
+        for chave in pedidos.items():
+            print(chave)
+        
+
+def verificarMovimentacao():
+    
+    with open('arquivos\movimentacoes.json','r') as arqMov:
+        
+        conteudoArquivo = json.load(arqMov)
+        
+        print(conteudoArquivo.items())
+        
+        

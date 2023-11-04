@@ -1,39 +1,39 @@
 {
-    "12874":{
-        "data abertura":"31/10/2023 16:31:55",
-        "tipo":"entrada",
-        "status":"finalizado",
-        "itens":[
+    "12874": {
+        "data abertura": "31/10/2023 16:31:55",
+        "tipo": "entrada",
+        "status": "finalizado",
+        "itens": [
             "dsa",
             "oi"
         ]
     },
-    "678":{
-        "data abertura":"31/10/2023 16:31:55",
-        "tipo":"entrada",
-        "status":"aberto",
-        "itens":[
+    "678": {
+        "data abertura": "31/10/2023 16:31:55",
+        "tipo": "entrada",
+        "status": "finalizado",
+        "itens": [
             1,
             2
         ]
     },
-    "12456768":{
-        "data abertura":"02/11/2023 22:48:35",
-        "tipo":"entrada",
-        "status":"aberto",
-        "itens":[]
+    "12456768": {
+        "data abertura": "02/11/2023 22:48:35",
+        "tipo": "entrada",
+        "status": "aberto",
+        "itens": []
     },
-    "124385432":{
-        "data abertura":"02/11/2023 22:50:36",
-        "tipo":"entrada",
-        "status":"aberto",
-        "itens":[]
+    "124385432": {
+        "data abertura": "02/11/2023 22:50:36",
+        "tipo": "entrada",
+        "status": "aberto",
+        "itens": []
     },
-    "3215645":{
-        "data abertura":"02/11/2023 22:57:58",
-        "tipo":"saida",
-        "status":"aberto",
-        "itens":[
+    "3215645": {
+        "data abertura": "02/11/2023 22:57:58",
+        "tipo": "saida",
+        "status": "aberto",
+        "itens": [
             "parafuso",
             "broca",
             "martelo"
