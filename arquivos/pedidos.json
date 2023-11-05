@@ -38,5 +38,13 @@
             "broca",
             "martelo"
         ]
+    },
+    "79": {
+        "data abertura": "05/11/2023 16:52:39",
+        "tipo": "saida",
+        "status": "aberto",
+        "itens": [
+            "mouse"
+        ]
     }
 }

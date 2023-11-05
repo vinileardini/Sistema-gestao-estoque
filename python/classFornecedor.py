@@ -17,12 +17,12 @@ class Fornecedor:
         loginPadrao = {'senha':None}
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivoCadastroFornecedores,\
-            open('arquivos\\fornecedor.json','r') as arquivoFornecedores,\
-                tempfile.NamedTemporaryFile('w',delete=False) as tempCadastroFornecedores,\
+            tempfile.NamedTemporaryFile('w',delete=False) as tempCadastroFornecedores:
+            with open('arquivos\\fornecedor.json','r') as arquivoFornecedores,\
                 tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
             
-            fornecedores = json.load(arquivoCadastroFornecedores)
-            loginFornecedores = json.load(arquivoFornecedores)
+                fornecedores = json.load(arquivoCadastroFornecedores)
+                loginFornecedores = json.load(arquivoFornecedores)
             
             if not fornecedores:
                 #verifica se já existe fornecedor com esse nome
@@ -208,5 +208,5 @@ def removeItem(nome,item):
     shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
         
             
-            
         
+            

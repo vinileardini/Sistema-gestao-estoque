@@ -11,7 +11,7 @@
     "678": {
         "data abertura": "31/10/2023 16:31:55",
         "tipo": "entrada",
-        "status": "aberto",
+        "status": "finalizado",
         "itens": [
             1,
             2
@@ -37,6 +37,14 @@
             "parafuso",
             "broca",
             "martelo"
+        ]
+    },
+    "79": {
+        "data abertura": "05/11/2023 16:52:39",
+        "tipo": "saida",
+        "status": "aberto",
+        "itens": [
+            "mouse"
         ]
     }
 }

@@ -1,11 +1,11 @@
 {
-    "A":{
-        "senha":"123"
+    "A": {
+        "senha": "123"
     },
-    "B":{
-        "senha":"987"
+    "B": {
+        "senha": "987"
     },
-    "vini":{
-        "senha": null
+    "vini": {
+        "senha": "12345"
     }
 }
