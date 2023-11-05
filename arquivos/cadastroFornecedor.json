@@ -14,5 +14,13 @@
             "oi",
             "tchau"
         ]
+    },
+    "vini": {
+        "telefone": "9999999999",
+        "email": "vini@gmail.com",
+        "produtos": [
+            "mouse",
+            "teclado"
+        ]
     }
 }

@@ -1,8 +1,11 @@
 {
     "A":{
-        "senha":"987"
+        "senha":"123"
     },
     "B":{
-        "senha":"567"
+        "senha":"987"
+    },
+    "vini":{
+        "senha": null
     }
 }

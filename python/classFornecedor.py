@@ -5,6 +5,7 @@ import shutil
 
 class Fornecedor:
     
+    #feito
     def __init__(self,nome,telefone,email,produtos=[]):
         
         self.__nomeFornecedor = nome
@@ -13,56 +14,77 @@ class Fornecedor:
         self.__produtos = produtos
         
         dadosFornecedor = {'telefone':self.__telefoneFornecedor, 'email':self.__email, 'produtos':self.__produtos}
+        loginPadrao = {'senha':None}
         
-        with open('arquivos\cadastroFornecedor.json','r') as arquivoFornecedores,\
-            tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
+        with open('arquivos\cadastroFornecedor.json','r') as arquivoCadastroFornecedores,\
+            open('arquivos\\fornecedor.json','r') as arquivoFornecedores,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempCadastroFornecedores,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
             
-            fornecedores = json.load(arquivoFornecedores)
+            fornecedores = json.load(arquivoCadastroFornecedores)
+            loginFornecedores = json.load(arquivoFornecedores)
             
             if not fornecedores:
                 #verifica se já existe fornecedor com esse nome
                 if self.__nomeFornecedor not in fornecedores:
                     novoFornecedor = {}
                     novoFornecedor[self.__nomeFornecedor] = dadosFornecedor
-                    json.dump(novoFornecedor,tempFornecedores,ensure_ascii=False,indent=4)
+                    json.dump(novoFornecedor,tempCadastroFornecedores,ensure_ascii=False,indent=4)
                 else:
                     print('Fornecedor já existente')
                 
             else:
                 fornecedores[self.__nomeFornecedor] = dadosFornecedor
-                json.dump(fornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                json.dump(fornecedores,tempCadastroFornecedores,ensure_ascii=False,indent=4)
+            
+            
+            if not loginFornecedores:
+                
+                if self.__nomeFornecedor not in loginFornecedores:
+                    loginFornecedores[self.__nomeFornecedor] = loginPadrao
+                    json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                
+                else:
+                    print('Fornecedor já cadastrado')
+                
+            
+            else:
+                loginFornecedores[self.__nomeFornecedor] = loginPadrao
+                json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+            
         
-        shutil.move(tempFornecedores.name,'arquivos\cadastroFornecedor.json')
-    
+        shutil.move(tempCadastroFornecedores.name,'arquivos\cadastroFornecedor.json')
+        shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
+    #feito
     def getNome(self):
         
         return self.__nomeFornecedor
-    
+    #feito 
     def getEmail(self):
     
         return self.__email
-    
+    #feito
     def setEmail(self,emailAlterado):
         
         self.__email = emailAlterado
-    
+    #feito
     def getTelefone(self):
         
         return self.__telefoneFornecedor
-    
+    #feito
     def setTelefone(self,telefoneAlterado):
         
         self.__telefoneFornecedor = telefoneAlterado
-    
+    #feito
     def getProdutos(self):
         
         return self.__produtos
-    
+    #feito
     def setProdutos(self,novosProdutos=[]):
         
         self.__produtos = novosProdutos
     
-    
+    #feito
     def getInfo(self):
         
         print('Nome do fornecedor:',self.getNome())
@@ -127,15 +149,39 @@ def setTelefoneFornecedor(nome,novoTelefone):
     shutil.move(alteracaoTelefone.name,'arquivos\cadastroFornecedor.json')
 
 #Feito
-def setProdutosFornecedor(nome,produtos=[]):
+def setProdutosFornecedor(nome):
     
     with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
         tempfile.NamedTemporaryFile('w',delete=False) as alteraProduto:
             
             conteudoArquivo = json.load(arquivo)
             
+            novosItens = []
+            
             if nome in conteudoArquivo:
-                conteudoArquivo[nome]["produtos"] = produtos
+                
+                while True:
+                
+                    novoItem = input('Insira o item a ser adicionado:')
+
+                    if novoItem not in conteudoArquivo[nome]["produtos"]:
+                        conteudoArquivo[nome]["produtos"].append(novoItem)
+                
+                
+                    print('0 - Parar inserção de novo item fornecido')
+                    print('1 - Adicionar novo item')
+                                
+                    escolhaCont = input('Escolha a opção desejada:')
+                                
+                    print('*************************************************')
+                                
+                    if escolhaCont == "0":
+                        print("Encerrando")
+                        break
+                    
+                    print('*************************************************')
+                    
+                
                 json.dump(conteudoArquivo,alteraProduto,ensure_ascii=False,indent=4)
             
             else:
@@ -143,3 +189,24 @@ def setProdutosFornecedor(nome,produtos=[]):
             
     shutil.move(alteraProduto.name,'arquivos\cadastroFornecedor.json')
                 
+
+def removeItem(nome,item):
+
+    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempArquivo:
+            
+        conteudoArquivo = json.load(arquivo)
+        
+        if item in conteudoArquivo[nome]["produtos"]:
+            
+            conteudoArquivo[nome]["produtos"].remove(item)
+            json.dump(conteudoArquivo,tempArquivo,ensure_ascii=False,indent=4)
+        
+        else:
+            print('O fornecedor não apresenta esse produto como opção')
+    
+    shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
+        
+            
+            
+        

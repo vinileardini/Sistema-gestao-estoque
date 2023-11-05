@@ -1,8 +1,12 @@
 import json
+import tempfile
+import shutil
 import classPedido
 from classPedido import Pedido
 from classProduto import Produto
 from classFornecedor import Fornecedor
+import classFornecedor
+
 
 def menu():
     
@@ -15,6 +19,7 @@ def menu():
         escolha = input('Selecione a opção desejada:')
         print('*************************************************')
         
+        #Login usuario
         if escolha == "1":
             
             inputUsuario = input('Usuario:')
@@ -67,7 +72,7 @@ def menu():
                                 if continueItem == "0":
                                     break
                                 
-                                print('*************************************************')
+                                
 
 
                                    
@@ -138,11 +143,12 @@ def menu():
                                 
                                 print('*************************************************')
                         
+                            Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
                             
                         #Verificação de movimentações
                         elif escolhaUsuario == "7":
                             
-                            classPedido.verificarMovimentacao
+                            classPedido.verificarMovimentacao()
                             
                         #Encerra
                         elif escolhaUsuario == "0":
@@ -155,25 +161,121 @@ def menu():
                         
                     
                 else:
-                    print('************************** ***********************')
-                    print('Usuário ou senha incorreta')
                     print('*************************************************')
+                    print('Usuário ou senha incorreta')
                     
-        # Login usuario
+                    
+                    
+                    
+        # Login fornecedor - corrigir
         elif escolha == '2':
-        
+            
             inputNomeForn = input('Nome:')
             senhaFornecedor = input('Senha:')
             
-            with open('arquivos\\fornecedor.json','r') as fornecedores:
+            with open('arquivos\\fornecedor.json','r') as fornecedores,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
                 
                 conteudoFornecedores = json.load(fornecedores)
                 
                 if inputNomeForn in conteudoFornecedores:
-                    if conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
+                    
+                    if conteudoFornecedores[inputNomeForn]["senha"] == None:
+                        
+                        while True:
+                            print('É o seu primeiro acesso')
+                            novaSenha = input('Defina uma nova senha:')
+                            verificaNovaSenha = input('Digite novamente a nova senha:')
+                            
+                            if novaSenha == verificaNovaSenha:
+                                
+                                conteudoFornecedores[inputNomeForn]["senha"] = novaSenha
+                                json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                                break
+                            else:
+                                print('As senhas não coincidem, tente novamente')
+                            
+                        shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
+                                
+                                
+                    
+                    elif conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
                         
                         print('**************************************************')
                         print('Logado com sucesso...')
+                        print('**************************************************')
+                        print('*************************************************')
+                        print('Menu fornecedor')
+                        print('**************************************************')
+                        print('1 - Verificar informações')
+                        print('2 - Alterar informações')
+                        print('3 - Visualizar pedidos')
+                        print('0 - Sair')
+                        escolhaForn = input('Insira a opção desejada:')
+                        print('*************************************************')
+                        
+                        # Verificar as informações do fornecedor
+                        if escolhaForn == "1":
+
+                            classFornecedor.getInfoFornecedor(inputNomeForn)
+                                    
+                        # Alterar informações do fornecedor            
+                        elif escolhaForn == "2":
+                            
+                            print('1 - Alterar telefone')
+                            print('2 - Alterar email')
+                            print('3 - Adicionar item oferecido')
+                            print('4 - Remover item oferecido')
+                            print('0 - Sair')
+                            
+                            escolhaAlteracao = input('Escolha a opção desejada:')
+                            
+                            print('*************************************************')
+                    
+                            # Alteração telefone fornecedor
+                            if escolhaAlteracao == "1":
+                                
+                                novoTel = input('Insira o novo telefone:')
+                                
+                                classFornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
+                            
+                            # Alteração email fornecedor
+                            elif escolhaAlteracao == "2":
+                                
+                                novoEmail = input('Insira o novo email:')
+                                
+                                classFornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
+                            
+                            # Adição item oferecido pelo fornecedor
+                            elif escolhaAlteracao == "3":
+                                
+                                classFornecedor.setProdutosFornecedor(inputNomeForn)
+                            
+                            # Remoção item oferecido pelo fornecedor
+                            elif escolhaAlteracao == "4":
+                                
+                                itemRemovido = input('Insira o item a ser removido:')
+                                classFornecedor.removeItem(inputNomeForn,itemRemovido)
+                                
+                            
+                            elif escolhaAlteracao == "0":
+                                
+                                print('Encerrando...')
+                                break
+                            
+                            else:
+                                print('Número de escolhido inválido')
+                            
+                                
+                                
+                                
+                                
+                                    
+                                 
+                                 
+                                
+                            
+                        
                         
             
         elif escolha == '0':
