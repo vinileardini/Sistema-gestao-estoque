@@ -18,6 +18,25 @@ class Pedido:
         data_e_hora = datetime.now()
         dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.__tipo,'status':self.__status,'itens':self.__itensPedido,}
         
+        
+        potFornecedores = []
+        # Verificação do melhor fornecedor
+        with open('cadastroFornecedor.json','r') as arqFornecedor:
+            
+            conteudoArquivo = json.load(arqFornecedor)
+            
+            chaves = conteudoArquivo.keys()
+            
+            for chave in chaves:
+                
+                produtosOferecidos = conteudoArquivo[chave]["produtos"]
+                
+                if itens in produtosOferecidos:
+                    
+                    potFornecedores.append(chave)
+                    
+        
+        
         with open('arquivos\pedidos.json','r') as saida, \
             open('arquivos\movimentacoes.json','r') as saidaMov,\
                 tempfile.NamedTemporaryFile('w',delete=False) as out,\
