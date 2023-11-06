@@ -1,58 +1,74 @@
 {
-    "12874": {
-        "data abertura": "31/10/2023 16:31:55",
-        "tipo": "entrada",
-        "status": "finalizado",
-        "itens": [
+    "12874":{
+        "data abertura":"31/10/2023 16:31:55",
+        "tipo":"entrada",
+        "status":"finalizado",
+        "itens":[
             "dsa",
             "oi"
         ]
     },
-    "678": {
-        "data abertura": "31/10/2023 16:31:55",
-        "tipo": "entrada",
-        "status": "finalizado",
-        "itens": [
+    "678":{
+        "data abertura":"31/10/2023 16:31:55",
+        "tipo":"entrada",
+        "status":"finalizado",
+        "itens":[
             1,
             2
         ]
     },
-    "12456768": {
-        "data abertura": "02/11/2023 22:48:35",
-        "tipo": "entrada",
-        "status": "aberto",
-        "itens": []
+    "12456768":{
+        "data abertura":"02/11/2023 22:48:35",
+        "tipo":"entrada",
+        "status":"aberto",
+        "itens":[]
     },
-    "124385432": {
-        "data abertura": "02/11/2023 22:50:36",
-        "tipo": "entrada",
-        "status": "aberto",
-        "itens": []
+    "124385432":{
+        "data abertura":"02/11/2023 22:50:36",
+        "tipo":"entrada",
+        "status":"aberto",
+        "itens":[]
     },
-    "3215645": {
-        "data abertura": "02/11/2023 22:57:58",
-        "tipo": "saida",
-        "status": "aberto",
-        "itens": [
+    "3215645":{
+        "data abertura":"02/11/2023 22:57:58",
+        "tipo":"saida",
+        "status":"aberto",
+        "itens":[
             "parafuso",
             "broca",
             "martelo"
         ]
     },
-    "79": {
-        "data abertura": "05/11/2023 16:52:39",
-        "tipo": "saida",
-        "status": "aberto",
-        "itens": [
+    "79":{
+        "data abertura":"05/11/2023 16:52:39",
+        "tipo":"saida",
+        "status":"aberto",
+        "itens":[
             "mouse"
         ]
     },
-    "43": {
-        "data abertura": "05/11/2023 21:04:00",
-        "tipo": "entrada",
-        "status": "finalizado",
-        "itens": [
+    "43":{
+        "data abertura":"05/11/2023 21:04:00",
+        "tipo":"entrada",
+        "status":"finalizado",
+        "itens":[
             "mouse"
+        ]
+    },
+    "54":{
+        "data abertura":"06/11/2023 13:25:09",
+        "tipo":"entrada",
+        "status":"aberto",
+        "itens":[
+            "teclado"
+        ]
+    },
+    "68":{
+        "data abertura":"06/11/2023 13:33:33",
+        "tipo":"entrada",
+        "status":"aberto",
+        "itens":[
+            "teclado"
         ]
     }
 }

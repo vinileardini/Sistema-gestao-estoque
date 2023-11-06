@@ -193,4 +193,34 @@ def verificarMovimentacao():
         
         print(conteudoArquivo.items())
         
+
+def pedidoEntrada(tipoProduto,quantidade):
+    
+    with open('arquivos\estoque.json','r') as arqEstoque,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
         
+        conteudoArquivo = json.load(arqEstoque)
+        
+        quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+        
+        conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) + int(quantidade)
+        
+        json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+    
+    shutil.move(tempEstoque.name,'arquivos\estoque.json')
+        
+
+def pedidoSaida(tipoProduto,quantidade):   
+    
+    with open('arquivos\estoque.json', 'r') as arqEstoque,\
+        tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+            
+        conteudoArquivo = json.load(arqEstoque)
+        
+        quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+        
+        conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
+        
+        json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+    
+    shutil.move(tempEstoque.name,'arquivos\estoque.json')

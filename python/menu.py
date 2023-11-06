@@ -6,6 +6,7 @@ from classPedido import Pedido
 from classProduto import Produto
 from classFornecedor import Fornecedor
 import classFornecedor
+import classProduto
 
 
 def menu():
@@ -25,144 +26,151 @@ def menu():
             inputUsuario = input('Usuario:')
             senhaUsuario = input('Senha:')
             
-            with open('arquivos\\usuario.json','r') as usuarios:
-                 
-                infoUsuarios = json.load(usuarios)
-                
-                if inputUsuario in infoUsuarios:
-                    if infoUsuarios[inputUsuario]["senha"] == senhaUsuario:
-                        print('*************************************************')
-                        print('Logado com sucesso...')
-                        print('*************************************************')
-                        print('Menu funcionário')
-                        print('*************************************************')
-                        print('1 - Verificar estoque')
-                        print('2 - Realizar pedido')
-                        print('3 - Finalizar pedido')
-                        print('4 - Verificar pedidos')
-                        print('5 - Cadastrar produto')
-                        print('6 - Cadastrar fornecedor')
-                        print('7 - Verificar movimentações')
-                        print('0 - Sair')
-                        escolhaUsuario = input('Selecione a opção desejada:')
-                        print('*************************************************')
-                        
-                        # Verificar estoque
-                        #if escolhaUsuario == "1":
-                            
-                            
-                        # Realizar pedido - OK
-                        if escolhaUsuario == "2":
-                            
-                            inputNumero = input('Informe o número do pedido:')
-                            inputTipo = input('Insira o tipo de pedido (entrada/saida):')
-                            itens = []
-                            
-                            while True:
-                                inputItem = input('Insira o item no pedido:')
-                                itens.append(inputItem)
-                                
-                                print('*************************************************')
-                                
-                                print('0 - Parar inserção de novo item no pedido')
-                                print('1 - Adicionar novo item')
-                                
-                                continueItem = input('Informe sua escolha:')
-                                
-                                if continueItem == "0":
-                                    break
-                                
-                                
-
-
-                                   
+            while True:    
+                with open('arquivos\\usuario.json','r') as usuarios:
+                    
+                    infoUsuarios = json.load(usuarios)
+                    
+                    if inputUsuario in infoUsuarios:
+                        if infoUsuarios[inputUsuario]["senha"] == senhaUsuario:
+                            print('Menu funcionário')
+                            print('*************************************************')
+                            print('1 - Verificar estoque')
+                            print('2 - Realizar pedido')
+                            print('3 - Finalizar pedido')
+                            print('4 - Verificar pedidos')
+                            print('5 - Cadastrar produto')
+                            print('6 - Cadastrar fornecedor')
+                            print('7 - Verificar movimentações')
+                            print('0 - Sair')
+                            escolhaUsuario = input('Selecione a opção desejada:')
                             print('*************************************************')
                             
-                            novoPedido = Pedido(inputNumero,inputTipo,itens)
-                            
-                            print('Pedido criado')
-                            
-                            print('*************************************************')
-                            
-                            novoPedido.getInfo()
-                        
-                            
-                        
-                        # Finalizar pedido - OK
-                        elif escolhaUsuario == "3":
-                            
-                            inputNumPedido = input('Insira o número do pedido a ser finalizado:')
-                            
-                            classPedido.encerrarPedido(inputNumPedido)
-                            
-                        # Verificar pedidos - lista todos - OK (Organizar melhor)
-                        elif escolhaUsuario == "4":
-                            
-                            classPedido.listarPedidos()
-                            
-                        
-                        #Cadastro de produto - OK
-                        elif escolhaUsuario == "5":
-                            
-                            inputTipo = input('Insira o tipo de item:')
-                            inputMarca = input('Insira a marca do produto:')
-                            inputCategoria = input('Insira a categoria do produto:')
-                            inputPrecoCompra = input('Insira o valor de compra do produto:')
-                            inputPrecoVenda = input('Insira o valor de venda do produto:')
-                            inputQuantidade = input('Insira a quantidade do produto:')
-                            
-                            novoProduto = Produto(inputTipo,inputMarca,inputCategoria,inputPrecoCompra,inputPrecoVenda,inputQuantidade)
-                            
-                            novoProduto.getInfo()
-                            
-                        #Cadastro de fornecedor - OK
-                        elif escolhaUsuario == "6":
-                            
-                            inputNomeForn = input('Insira o nome do fornecedor:')
-                            inputTelefone = input('Insira o telefone do fornecedor:')
-                            inputEmail = input('Insira o email do fornecedor:')
-                            itensForn = []
-                            
-                            while True:
+                            # Verificar estoque - OK
+                            if escolhaUsuario == "1":
                                 
-                                novoItem = input('Insira o item fornecido:')
-                                itensForn.append(novoItem)
+                                classProduto.verificaEstoque()
+                                
+                                
+                            # Realizar pedido - OK
+                            elif escolhaUsuario == "2":
+                                
+                                inputNumero = input('Informe o número do pedido:')
+                                inputTipo = input('Insira o tipo de pedido (entrada/saida):')
+                                itens = []
+                                
+                                while True:
+                                    inputItem = input('Insira o item no pedido:')
+                                    itens.append(inputItem)
+                                    inputQtItem = input('Insira a quantidade do item:')
+                                    
+                                    print('*************************************************')
+                                    
+                                    print('0 - Parar inserção de novo item no pedido')
+                                    print('1 - Adicionar novo item')
+                                    
+                                    continueItem = input('Informe sua escolha:')
+                                    
+                                    if continueItem == "0":
+                                        break
+                                    
+                                    
+                                if inputTipo == "entrada":
+                                    
+                                    classPedido.pedidoEntrada(inputItem,inputQtItem)
+                                    
+                                elif inputTipo == "saida":
+                                    
+                                    classPedido.pedidoSaida(inputItem,inputQtItem)
+
+                                    
+                                print('*************************************************')
+                                
+                                novoPedido = Pedido(inputNumero,inputTipo,itens)
+                                
+                                print('Pedido criado')
                                 
                                 print('*************************************************')
                                 
-                                print('0 - Parar inserção de novo item fornecido')
-                                print('1 - Adicionar novo item')
-                                
-                                escolhaCont = input('Escolha a opção desejada:')
-                                
-                                print('*************************************************')
-                                
-                                if escolhaCont == "0":
-                                    print("Encerrando")
-                                    break
-                                
-                                print('*************************************************')
-                        
-                            Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
+                                novoPedido.getInfo()
                             
-                        #Verificação de movimentações - OK (Ajustar formatação)
-                        elif escolhaUsuario == "7":
+                                
                             
-                            classPedido.verificarMovimentacao()
+                            # Finalizar pedido - OK
+                            elif escolhaUsuario == "3":
+                                
+                                inputNumPedido = input('Insira o número do pedido a ser finalizado:')
+                                
+                                classPedido.encerrarPedido(inputNumPedido)
+                                
+                            # Verificar pedidos - lista todos - OK (Organizar melhor)
+                            elif escolhaUsuario == "4":
+                                
+                                classPedido.listarPedidos()
+                                
                             
-                        #Encerra
-                        elif escolhaUsuario == "0":
+                            #Cadastro de produto - OK
+                            elif escolhaUsuario == "5":
+                                
+                                inputTipo = input('Insira o tipo de item:')
+                                inputMarca = input('Insira a marca do produto:')
+                                inputCategoria = input('Insira a categoria do produto:')
+                                inputPrecoCompra = input('Insira o valor de compra do produto:')
+                                inputPrecoVenda = input('Insira o valor de venda do produto:')
+                                inputQuantidade = input('Insira a quantidade do produto:')
+                                
+                                novoProduto = Produto(inputTipo,inputMarca,inputCategoria,inputPrecoCompra,inputPrecoVenda,inputQuantidade)
+                                
+                                novoProduto.getInfo()
+                                
+                            #Cadastro de fornecedor - OK
+                            elif escolhaUsuario == "6":
+                                
+                                inputNomeForn = input('Insira o nome do fornecedor:')
+                                inputTelefone = input('Insira o telefone do fornecedor:')
+                                inputEmail = input('Insira o email do fornecedor:')
+                                itensForn = []
+                                
+                                while True:
+                                    
+                                    novoItem = input('Insira o item fornecido:')
+                                    itensForn.append(novoItem)
+                                    
+                                    print('*************************************************')
+                                    
+                                    print('0 - Parar inserção de novo item fornecido')
+                                    print('1 - Adicionar novo item')
+                                    
+                                    escolhaCont = input('Escolha a opção desejada:')
+                                    
+                                    print('*************************************************')
+                                    
+                                    if escolhaCont == "0":
+                                        print("Encerrando")
+                                        break
+                                    
+                                    print('*************************************************')
                             
-                            print('Encerrando ...')
-                            break
-                        
-                        else:
-                            print("Valor inválido")            
+                                Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
+                                
+                            #Verificação de movimentações - OK (Ajustar formatação)
+                            elif escolhaUsuario == "7":
+                                
+                                classPedido.verificarMovimentacao()
+                                
+                            #Encerra
+                            elif escolhaUsuario == "0":
+                                
+                                print('Encerrando ...')
+                                break
+                            
+                            else:
+                                print("Valor inválido")            
                         
                     
-                else:
-                    print('*************************************************')
-                    print('Usuário ou senha incorreta')
+                    else:
+                        print('*************************************************')
+                        print('Usuário ou senha incorreta')
                     
                     
                     
@@ -197,9 +205,6 @@ def menu():
             
             if conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
                                     
-                    print('**************************************************')
-                    print('Logado com sucesso...')
-                    print('*************************************************')
                     print('Menu fornecedor')
                     print('**************************************************')
                     print('1 - Verificar informações')

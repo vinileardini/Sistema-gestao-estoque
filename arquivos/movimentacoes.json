@@ -50,9 +50,25 @@
     "43": {
         "data abertura": "05/11/2023 21:04:00",
         "tipo": "entrada",
-        "status": "aberto",
+        "status": "finalizado",
         "itens": [
             "mouse"
+        ]
+    },
+    "54": {
+        "data abertura": "06/11/2023 13:25:09",
+        "tipo": "entrada",
+        "status": "aberto",
+        "itens": [
+            "teclado"
+        ]
+    },
+    "68": {
+        "data abertura": "06/11/2023 13:33:33",
+        "tipo": "entrada",
+        "status": "aberto",
+        "itens": [
+            "teclado"
         ]
     }
 }

@@ -13,7 +13,7 @@ class Produto:
         self.categoriaProduto = categoria
         self.__precoCompra = precoCompra
         self.precoVenda = precoVenda
-        self.__quantidade = quantidadeProduto
+        self.__quantidade = int(quantidadeProduto)
         
         with open('arquivos\estoque.json','r') as arquivo,\
             tempfile.NamedTemporaryFile('w',delete=False) as tempProduto:
@@ -29,7 +29,8 @@ class Produto:
             
             else:
                 
-                conteudoArquivo[self.tipoProduto]["quantidade"] += quantidadeProduto
+                qtProduto = int(conteudoArquivo[self.tipoProduto]["quantidade"])
+                conteudoArquivo[self.tipoProduto]["quantidade"] = int(quantidadeProduto) + qtProduto
                 json.dump(conteudoArquivo,tempProduto,ensure_ascii=False,indent=4)
                 
         shutil.move(tempProduto.name,'arquivos\estoque.json')
@@ -157,10 +158,10 @@ def setPrecoCompra (tipoProduto,marca,novoPreco):
 #Função para alteração do valor de venda através de pesquisa
 def setPrecoVenda (tipoProduto,marca,novoPreco):
     
-    with open('arquivos\estoque.json') as arquivo,\
+    with open('arquivos\estoque.json','r') as arquivo,\
         tempfile.NamedTemporaryFile('w',delete=False) as tempPrecoVenda:
         
-        conteudoArquivo = json.load()
+        conteudoArquivo = json.load(arquivo)
         
         if tipoProduto in conteudoArquivo:
             #Verificação da marca do produto
@@ -177,7 +178,25 @@ def setPrecoVenda (tipoProduto,marca,novoPreco):
 
     
 
+def verificaEstoque():
+    
+    with open('arquivos\estoque.json','r') as arquivo:
+        conteudoArquivo = json.load(arquivo)
 
+        chaves = conteudoArquivo.keys()
+        
+        for chaveAtual in chaves:
+            
+            print('Produto:',chaveAtual)
+            print('Quantidade em estoque:',conteudoArquivo[chaveAtual]["quantidade"])
+            print('*************************************************')
+            
+            
+            
+        
+        
+                
+        
     
         
         
