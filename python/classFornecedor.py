@@ -17,40 +17,40 @@ class Fornecedor:
         loginPadrao = {'senha':None}
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivoCadastroFornecedores,\
-            tempfile.NamedTemporaryFile('w',delete=False) as tempCadastroFornecedores:
-            with open('arquivos\\fornecedor.json','r') as arquivoFornecedores,\
-                tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
+            open('arquivos\\fornecedor.json','r') as arquivoFornecedores,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempCadastroFornecedores:
             
                 fornecedores = json.load(arquivoCadastroFornecedores)
                 loginFornecedores = json.load(arquivoFornecedores)
             
-            if not fornecedores:
-                #verifica se já existe fornecedor com esse nome
-                if self.__nomeFornecedor not in fornecedores:
-                    novoFornecedor = {}
-                    novoFornecedor[self.__nomeFornecedor] = dadosFornecedor
-                    json.dump(novoFornecedor,tempCadastroFornecedores,ensure_ascii=False,indent=4)
+                if not fornecedores:
+                    #verifica se já existe fornecedor com esse nome
+                    if self.__nomeFornecedor not in fornecedores:
+                        novoFornecedor = {}
+                        novoFornecedor[self.__nomeFornecedor] = dadosFornecedor
+                        json.dump(novoFornecedor,tempCadastroFornecedores,ensure_ascii=False,indent=4)
+                    else:
+                        print('Fornecedor já existente')
+                    
                 else:
-                    print('Fornecedor já existente')
+                    fornecedores[self.__nomeFornecedor] = dadosFornecedor
+                    json.dump(fornecedores,tempCadastroFornecedores,ensure_ascii=False,indent=4)
                 
-            else:
-                fornecedores[self.__nomeFornecedor] = dadosFornecedor
-                json.dump(fornecedores,tempCadastroFornecedores,ensure_ascii=False,indent=4)
-            
-            
-            if not loginFornecedores:
                 
-                if self.__nomeFornecedor not in loginFornecedores:
+                if not loginFornecedores:
+                    
+                    if self.__nomeFornecedor not in loginFornecedores:
+                        loginFornecedores[self.__nomeFornecedor] = loginPadrao
+                        json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                    
+                    else:
+                        print('Fornecedor já cadastrado')
+                    
+                
+                else:
                     loginFornecedores[self.__nomeFornecedor] = loginPadrao
                     json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
-                
-                else:
-                    print('Fornecedor já cadastrado')
-                
-            
-            else:
-                loginFornecedores[self.__nomeFornecedor] = loginPadrao
-                json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
             
         
         shutil.move(tempCadastroFornecedores.name,'arquivos\cadastroFornecedor.json')

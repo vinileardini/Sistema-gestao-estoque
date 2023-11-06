@@ -47,5 +47,12 @@
         "preco_de_compra": "2500.00",
         "preco_de_venda": "3500.00",
         "quantidade": "10"
+    },
+    "televisao 4K": {
+        "marca": "samsung",
+        "categoria": "televisao",
+        "preco_de_compra": "3500.00",
+        "preco_de_venda": "5000.00",
+        "quantidade": "5"
     }
 }

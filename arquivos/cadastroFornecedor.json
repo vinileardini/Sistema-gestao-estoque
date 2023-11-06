@@ -22,5 +22,13 @@
             "mouse",
             "teclado"
         ]
+    },
+    "hikelmi": {
+        "telefone": "22222222222222",
+        "email": "hikelmi@gmail.com",
+        "produtos": [
+            "mouse",
+            "fone de ouvido"
+        ]
     }
 }

@@ -46,5 +46,13 @@
         "itens": [
             "mouse"
         ]
+    },
+    "43": {
+        "data abertura": "05/11/2023 21:04:00",
+        "tipo": "entrada",
+        "status": "finalizado",
+        "itens": [
+            "mouse"
+        ]
     }
 }

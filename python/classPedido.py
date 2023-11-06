@@ -143,14 +143,16 @@ def encerrarPedido(numeroPedido):
                 json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
                 
                 print('Pedido finalizado')
-                
-                shutil.move(tempPedido.name,'arquivos\pedidos.json')
-                
+            
             else:
                 print('Pedido já finalizado')
-    
+                
         else:
             print('Pedido inexistente')
+                
+    shutil.move(tempPedido.name,'arquivos\pedidos.json')
+    
+        
                             
                             
 

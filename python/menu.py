@@ -88,20 +88,20 @@ def menu():
                         
                             
                         
-                        # Finalizar pedido 
+                        # Finalizar pedido - OK
                         elif escolhaUsuario == "3":
                             
                             inputNumPedido = input('Insira o número do pedido a ser finalizado:')
                             
                             classPedido.encerrarPedido(inputNumPedido)
                             
-                        # Verificar pedidos - lista todos
+                        # Verificar pedidos - lista todos - OK (Organizar melhor)
                         elif escolhaUsuario == "4":
                             
                             classPedido.listarPedidos()
                             
                         
-                        #Cadastro de produto 
+                        #Cadastro de produto - OK
                         elif escolhaUsuario == "5":
                             
                             inputTipo = input('Insira o tipo de item:')
@@ -115,7 +115,7 @@ def menu():
                             
                             novoProduto.getInfo()
                             
-                        #Cadastro de fornecedor 
+                        #Cadastro de fornecedor - OK
                         elif escolhaUsuario == "6":
                             
                             inputNomeForn = input('Insira o nome do fornecedor:')
@@ -145,7 +145,7 @@ def menu():
                         
                             Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
                             
-                        #Verificação de movimentações
+                        #Verificação de movimentações - OK (Ajustar formatação)
                         elif escolhaUsuario == "7":
                             
                             classPedido.verificarMovimentacao()
