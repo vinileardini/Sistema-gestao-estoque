@@ -48,9 +48,9 @@
         ]
     },
     "43": {
-        "data abertura": "05/11/2023 21:04:00",
+        "data abertura": "07/11/2023 09:39:31",
         "tipo": "entrada",
-        "status": "finalizado",
+        "status": "aberto",
         "itens": [
             "mouse"
         ]
@@ -69,6 +69,23 @@
         "status": "aberto",
         "itens": [
             "teclado"
+        ]
+    },
+    "21": {
+        "data abertura": "07/11/2023 13:15:23",
+        "tipo": "saida",
+        "status": "aberto",
+        "itens": [
+            "mouse"
+        ]
+    },
+    "10": {
+        "data abertura": "07/11/2023 13:35:48",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
+            "mouse"
         ]
     }
 }

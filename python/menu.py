@@ -57,6 +57,7 @@ def menu():
                                 
                                 inputNumero = input('Informe o número do pedido:')
                                 inputTipo = input('Insira o tipo de pedido (entrada/saida):')
+                                inputNomeForn = input('Insira o nome do fornecedor:')
                                 itens = []
                                 
                                 while True:
@@ -86,7 +87,7 @@ def menu():
                                     
                                 print('*************************************************')
                                 
-                                novoPedido = Pedido(inputNumero,inputTipo,itens)
+                                novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens)
                                 
                                 print('Pedido criado')
                                 

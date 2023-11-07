@@ -8,35 +8,29 @@ import os
 
 class Pedido:
     
-    def __init__(self,numeroPedido,tipo,itens=[]):
+    def __init__(self,numeroPedido,tipo,fornecedor,itens=[]):
         
         self.__numeroPedido = numeroPedido
         self.__tipo = tipo
+        self.__fornecedor = fornecedor
         self.__itensPedido = itens
         self.__status = 'aberto'
         
         data_e_hora = datetime.now()
-        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.__tipo,'status':self.__status,'itens':self.__itensPedido,}
-        
-        
-        potFornecedores = []
-        # Verificação do melhor fornecedor
-        with open('cadastroFornecedor.json','r') as arqFornecedor:
+        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
+
+        #Verificação se o fornecedor está cadastrado
+        with open('arquivos\cadastroFornecedor.json','r') as arqFornecedor:
             
             conteudoArquivo = json.load(arqFornecedor)
             
-            chaves = conteudoArquivo.keys()
-            
-            for chave in chaves:
+            if self.getFornecedor() in conteudoArquivo:
                 
-                produtosOferecidos = conteudoArquivo[chave]["produtos"]
+                    dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
+        
+            else:
+                print('Fornecedor não cadastrado')
                 
-                if itens in produtosOferecidos:
-                    
-                    potFornecedores.append(chave)
-                    
-        
-        
         with open('arquivos\pedidos.json','r') as saida, \
             open('arquivos\movimentacoes.json','r') as saidaMov,\
                 tempfile.NamedTemporaryFile('w',delete=False) as out,\
@@ -46,12 +40,12 @@ class Pedido:
                 
                 if not dados:
                     novoDado={}
-                    novoDado[self.__numeroPedido] = dadosPedido
+                    novoDado[self.getNumeroPedido()] = dadosPedido
                     json.dump(novoDado,out,ensure_ascii=False,indent=4)
                     json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
                     
                 else:
-                    dados[f'{self.__numeroPedido}'] = dadosPedido
+                    dados[f'{self.getNumeroPedido()}'] = dadosPedido
                     json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
                     json.dump(dados,outMov,ensure_ascii=False,indent=4)
             
@@ -76,12 +70,19 @@ class Pedido:
         
         return self.__status
     
+    def getFornecedor(self):
+        
+        return self.__fornecedor
+
+    
     def getInfo(self):
         
         print('Número do pedido:',self.getNumeroPedido())
         print('Tipo:',self.getTipoPedido())
+        print('Fornecedor:',self.getFornecedor())
         print('Itens:',self.getItensPedido())
         print('Status:',self.getStatusPedido())
+    
         
     def finalizaPedido(self):
         
