@@ -19,39 +19,45 @@ class Pedido:
         data_e_hora = datetime.now()
         dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
 
-        #Verificação se o fornecedor está cadastrado
+        #Verificação se o fornecedor está cadastrado - OK
         with open('arquivos\cadastroFornecedor.json','r') as arqFornecedor:
             
             conteudoArquivo = json.load(arqFornecedor)
             
             if self.getFornecedor() in conteudoArquivo:
                 
-                    dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
-        
+                for item in itens:
+                    
+                    if item in conteudoArquivo[self.getFornecedor()]["produtos"]:
+                        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
+                        
+                        with open('arquivos\pedidos.json','r') as saida, \
+                            open('arquivos\movimentacoes.json','r') as saidaMov,\
+                                tempfile.NamedTemporaryFile('w',delete=False) as out,\
+                                tempfile.NamedTemporaryFile('w',delete=False) as outMov:
+                                                        
+                                dados = json.load(saida)
+                                
+                                if not dados:
+                                    novoDado={}
+                                    novoDado[self.getNumeroPedido()] = dadosPedido
+                                    json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                                    json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
+                                    
+                                else:
+                                    dados[f'{self.getNumeroPedido()}'] = dadosPedido
+                                    json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
+                                    json.dump(dados,outMov,ensure_ascii=False,indent=4)
+                            
+                        
+                        shutil.move(out.name,'arquivos\pedidos.json')
+                        shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                        
+                    else:
+                        print('O fornecedor não oferece o item no pedido')
             else:
                 print('Fornecedor não cadastrado')
-                
-        with open('arquivos\pedidos.json','r') as saida, \
-            open('arquivos\movimentacoes.json','r') as saidaMov,\
-                tempfile.NamedTemporaryFile('w',delete=False) as out,\
-                tempfile.NamedTemporaryFile('w',delete=False) as outMov:
-                                        
-                dados = json.load(saida)
-                
-                if not dados:
-                    novoDado={}
-                    novoDado[self.getNumeroPedido()] = dadosPedido
-                    json.dump(novoDado,out,ensure_ascii=False,indent=4)
-                    json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
-                    
-                else:
-                    dados[f'{self.getNumeroPedido()}'] = dadosPedido
-                    json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-                    json.dump(dados,outMov,ensure_ascii=False,indent=4)
-            
-        
-        shutil.move(out.name,'arquivos\pedidos.json')
-        shutil.move(outMov.name,'arquivos\movimentacoes.json')
+
     
     
     def getNumeroPedido(self):

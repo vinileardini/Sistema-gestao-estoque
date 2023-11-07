@@ -4,21 +4,21 @@
         "categoria": "periferico",
         "preco_de_compra": 80.0,
         "preco_de_venda": 99.99,
-        "quantidade": 42
+        "quantidade": 20
     },
     "camiseta": {
         "marca": "polo",
         "categoria": "vestuario",
         "preco_de_compra": 70.0,
         "preco_de_venda": 150.0,
-        "quantidade": 32
+        "quantidade": 42
     },
     "teclado": {
         "marca": "razer",
         "categoria": "perif�rico",
         "preco_de_compra": "130.00",
         "preco_de_venda": "250.00",
-        "quantidade": 15
+        "quantidade": 20
     },
     "galaxy buds": {
         "marca": "samsung",

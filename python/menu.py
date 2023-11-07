@@ -84,16 +84,27 @@ def menu():
                                     
                                     classPedido.pedidoSaida(inputItem,inputQtItem)
 
-                                    
+
                                 print('*************************************************')
                                 
                                 novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens)
                                 
-                                print('Pedido criado')
+                                with open('arquivos\pedidos.json','r') as arqPedidos:
+                                    
+                                    conteudoPedidos = json.load(arqPedidos)
+                                    
+                                    if inputNumero in conteudoPedidos:
+                                    
+                                        print('Pedido criado')
                                 
-                                print('*************************************************')
+                                        print('*************************************************')
                                 
-                                novoPedido.getInfo()
+                                        novoPedido.getInfo()
+                                    
+                                    else:
+                                        print('Não foi possível criar o pedido')
+                                        
+                                        print('*************************************************')
                             
                                 
                             
@@ -162,7 +173,7 @@ def menu():
                             #Encerra
                             elif escolhaUsuario == "0":
                                 
-                                print('Encerrando ...')
+                                print('Retornando a área de login ')
                                 break
                             
                             else:
@@ -261,7 +272,7 @@ def menu():
                         # Encerra - OK
                         elif escolhaAlteracao == "0":
                             
-                            print('Encerrando...')
+                            print('Retornando a área de login')
                             break
                         
                         else:
@@ -271,6 +282,10 @@ def menu():
         elif escolha == '0':
             print('Encerrando...')
             return False
+
+        
+        else:
+            print('Selecione uma opção válida')
         
             
     

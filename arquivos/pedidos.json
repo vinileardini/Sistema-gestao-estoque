@@ -87,5 +87,23 @@
         "itens":[
             "mouse"
         ]
+    },
+    "9":{
+        "data abertura":"07/11/2023 15:55:58",
+        "tipo":"saida",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "mouse"
+        ]
+    },
+    "59":{
+        "data abertura":"07/11/2023 16:24:07",
+        "tipo":"entrada",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "teclado"
+        ]
     }
 }
