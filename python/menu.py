@@ -44,6 +44,7 @@ def menu():
                             print('5 - Cadastrar produto')
                             print('6 - Cadastrar fornecedor')
                             print('7 - Verificar movimentações')
+                            print('8 - Cadastrar funcionario')
                             print('0 - Sair')
                             escolhaUsuario = input('Selecione a opção desejada:')
                             print('*************************************************')
@@ -171,6 +172,40 @@ def menu():
                             elif escolhaUsuario == "7":
                                 
                                 classPedido.verificarMovimentacao()
+                            
+                            #Cadastro de novo funcionario
+                            elif escolhaUsuario == "8":
+                                
+                                cadastNome = input('Insira o nome do funcionario a ser cadastrado:')
+                                
+                                with tempfile.NamedTemporaryFile('w',delete=False) as tempFunc:
+                                    
+                                    if cadastNome not in infoUsuarios:
+                                        
+                                        
+                                        while True:
+                                            
+                                            cadastSenha = input('Defina a senha para o usuário:')
+                                            repeteSenha = input('Insira novamente a senha:')
+                                            
+                                            if cadastSenha == repeteSenha:
+                                                dadosUser = {"senha":cadastSenha}
+                                                infoUsuarios[cadastNome] = dadosUser
+                                                json.dump(infoUsuarios,tempFunc,ensure_ascii=False,indent=4)
+                                                print('Funcionario cadastrado')
+                                                break
+                                            
+                                            else:
+                                                print('As senhas informadas são diferentes')
+                                    
+                                    else:
+                                        print('Funcionário já cadastrado')
+                                            
+                                shutil.move(tempFunc.name,'arquivos\\usuario.json')   
+                                    
+                                    
+                                
+                                
                                 
                             #Encerra
                             elif escolhaUsuario == "0":

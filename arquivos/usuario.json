@@ -1,6 +1,11 @@
 {
-    "vinicius":{
-        "senha":"123"
+    "vinicius": {
+        "senha": "123"
+    },
+    "giovanni": {
+        "senha": "98"
+    },
+    "vin": {
+        "senha": "70"
     }
-
 }
