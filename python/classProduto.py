@@ -190,6 +190,29 @@ def verificaEstoque():
             print('Produto:',chaveAtual)
             print('Quantidade em estoque:',conteudoArquivo[chaveAtual]["quantidade"])
             print('*************************************************')
+        
+
+def verificaQuantidadeEstoque():
+    
+    with open('arquivos\estoque.json','r') as arquivo:
+        conteudoArquivo = json.load(arquivo)
+        
+        chaves = conteudoArquivo.keys()
+        
+        for chaveAtual in chaves:
+             
+             quantidade = int(conteudoArquivo[chaveAtual]["quantidade"])
+             
+             if quantidade < 10:
+                 
+                 textoVermelho = "\033[1;31m"
+                 resetCor = "\033[0;0m"
+                 print(textoVermelho+'*************************************************')
+                 print(textoVermelho + "Aviso !!!  Baixa quantidade do produto: " + chaveAtual)
+                 print(textoVermelho+'*************************************************'+resetCor)
+            
+       
+        
             
             
             

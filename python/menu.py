@@ -33,7 +33,9 @@ def menu():
                     
                     if inputUsuario in infoUsuarios:
                         if infoUsuarios[inputUsuario]["senha"] == senhaUsuario:
+                            print('*************************************************')
                             print('Menu funcionário')
+                            classProduto.verificaQuantidadeEstoque()
                             print('*************************************************')
                             print('1 - Verificar estoque')
                             print('2 - Realizar pedido')
@@ -115,7 +117,7 @@ def menu():
                                 
                                 classPedido.encerrarPedido(inputNumPedido)
                                 
-                            # Verificar pedidos - lista todos - OK (Organizar melhor)
+                            # Verificar pedidos - lista todos - OK 
                             elif escolhaUsuario == "4":
                                 
                                 classPedido.listarPedidos()
@@ -165,7 +167,7 @@ def menu():
                             
                                 Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
                                 
-                            #Verificação de movimentações - OK (Ajustar formatação)
+                            #Verificação de movimentações - OK 
                             elif escolhaUsuario == "7":
                                 
                                 classPedido.verificarMovimentacao()
@@ -183,6 +185,7 @@ def menu():
                     else:
                         print('*************************************************')
                         print('Usuário ou senha incorreta')
+                        break
                     
                     
                     
@@ -216,7 +219,7 @@ def menu():
             shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
             
             if conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
-                                    
+                    print('*************************************************')            
                     print('Menu fornecedor')
                     print('**************************************************')
                     print('1 - Verificar informações')

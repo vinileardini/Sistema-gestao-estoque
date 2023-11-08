@@ -207,8 +207,14 @@ def listarPedidos():
         
         pedidos = json.load(arqPedidos)
         
-        for chave in pedidos.items():
-            print(chave)
+        for chave in pedidos.keys():
+            
+             print('*************************************************')
+             print('Número do pedido:',chave)
+             print('Data abertura:',pedidos[chave]["data abertura"])
+             print('Tipo:',pedidos[chave]["tipo"])
+             print('Fornecedor:',pedidos[chave]["fornecedor"])
+             print('Status:',pedidos[chave]["itens"])
         
 
 def verificarMovimentacao():
@@ -217,7 +223,18 @@ def verificarMovimentacao():
         
         conteudoArquivo = json.load(arqMov)
         
-        print(conteudoArquivo.items())
+        chaves = conteudoArquivo.keys()
+        
+        for chave in chaves:
+            
+            print('*************************************************')
+            print(chave)
+            print(conteudoArquivo[chave]["data abertura"])
+            print(conteudoArquivo[chave]["tipo"])
+            print(conteudoArquivo[chave]["fornecedor"])
+            print(conteudoArquivo[chave]["itens"])
+        
+        
         
 
 def pedidoEntrada(tipoProduto,quantidade):

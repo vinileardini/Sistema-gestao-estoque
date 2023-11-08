@@ -18,13 +18,13 @@
         "categoria": "perif�rico",
         "preco_de_compra": "130.00",
         "preco_de_venda": "250.00",
-        "quantidade": 20
+        "quantidade": 4
     },
     "galaxy buds": {
         "marca": "samsung",
         "categoria": "fone de ouvido",
         "preco_de_compra": "100",
         "preco_de_venda": "200",
-        "quantidade": 10
+        "quantidade": 8
     }
 }
