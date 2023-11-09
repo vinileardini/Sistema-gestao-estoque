@@ -78,6 +78,10 @@ def menu():
                                     if continueItem == "0":
                                         break
                                     
+                                    elif continueItem != 0 and continueItem != 1:
+                                        print('Opção inválida !!! Retornando ao menu')
+                                        break
+                                    
                                     
                                 if inputTipo == "entrada":
                                     
@@ -134,9 +138,13 @@ def menu():
                                 inputPrecoVenda = input('Insira o valor de venda do produto:')
                                 inputQuantidade = input('Insira a quantidade do produto:')
                                 
-                                novoProduto = Produto(inputTipo,inputMarca,inputCategoria,inputPrecoCompra,inputPrecoVenda,inputQuantidade)
-                                
-                                novoProduto.getInfo()
+                                try:
+                                    novoProduto = Produto(inputTipo,inputMarca,inputCategoria,inputPrecoCompra,inputPrecoVenda,inputQuantidade)
+                                    novoProduto.getInfo()
+                                except:
+                                    print('*************************************************')
+                                    print('Não foi possível cadastrar o produto')
+                                    print('Retornando ao menu')
                                 
                             #Cadastro de fornecedor - OK
                             elif escolhaUsuario == "6":
@@ -165,8 +173,10 @@ def menu():
                                         break
                                     
                                     print('*************************************************')
-                            
-                                Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
+                                try:
+                                    Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
+                                except:
+                                    print('Não foi possível cadastrar o fornecedor')
                                 
                             #Verificação de movimentações - OK 
                             elif escolhaUsuario == "7":
@@ -273,49 +283,51 @@ def menu():
                             # Alterar informações do fornecedor - OK
                             elif escolhaForn == "2":
                                 
-                                print('1 - Alterar telefone')
-                                print('2 - Alterar email')
-                                print('3 - Adicionar item oferecido')
-                                print('4 - Remover item oferecido')
-                                print('0 - Sair')
-                                
-                                escolhaAlteracao = input('Escolha a opção desejada:')
-                                
-                                print('*************************************************')
-                        
-                                # Alteração telefone fornecedor - OK
-                                if escolhaAlteracao == "1":
+                                while True:
+                                    print('*************************************************')
+                                    print('1 - Alterar telefone')
+                                    print('2 - Alterar email')
+                                    print('3 - Adicionar item oferecido')
+                                    print('4 - Remover item oferecido')
+                                    print('0 - Sair')
                                     
-                                    novoTel = input('Insira o novo telefone:')
+                                    escolhaAlteracao = input('Escolha a opção desejada:')
                                     
-                                    classFornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
-                                
-                                # Alteração email fornecedor - OK
-                                elif escolhaAlteracao == "2":
+                                    print('*************************************************')
+                            
+                                    # Alteração telefone fornecedor - OK
+                                    if escolhaAlteracao == "1":
+                                        
+                                        novoTel = input('Insira o novo telefone:')
+                                        
+                                        classFornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
                                     
-                                    novoEmail = input('Insira o novo email:')
+                                    # Alteração email fornecedor - OK
+                                    elif escolhaAlteracao == "2":
+                                        
+                                        novoEmail = input('Insira o novo email:')
+                                        
+                                        classFornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
                                     
-                                    classFornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
-                                
-                                # Adição item oferecido pelo fornecedor - OK
-                                elif escolhaAlteracao == "3":
+                                    # Adição item oferecido pelo fornecedor - OK
+                                    elif escolhaAlteracao == "3":
+                                        
+                                        classFornecedor.setProdutosFornecedor(inputNomeForn)
                                     
-                                    classFornecedor.setProdutosFornecedor(inputNomeForn)
-                                
-                                # Remoção item oferecido pelo fornecedor - OK
-                                elif escolhaAlteracao == "4":
+                                    # Remoção item oferecido pelo fornecedor - OK
+                                    elif escolhaAlteracao == "4":
+                                        
+                                        itemRemovido = input('Insira o item a ser removido:')
+                                        classFornecedor.removeItem(inputNomeForn,itemRemovido)
+                                        
+                                    # Encerra - OK
+                                    elif escolhaAlteracao == "0":
+                                        
+                                        print('Retornando a área do fornecedor')
+                                        break
                                     
-                                    itemRemovido = input('Insira o item a ser removido:')
-                                    classFornecedor.removeItem(inputNomeForn,itemRemovido)
-                                    
-                                # Encerra - OK
-                                elif escolhaAlteracao == "0":
-                                    
-                                    print('Retornando a área de login')
-                                    break
-                                
-                                else:
-                                    print('Número de escolhido inválido')
+                                    else:
+                                        print('Número de escolhido inválido')
                 
                 except:
                     print('Fornecedor não cadastrado ou senha incorreta')

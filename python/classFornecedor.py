@@ -104,7 +104,7 @@ def getInfoFornecedor(nome):
         conteudoArquivo = json.load(arquivo)
     
         if nome in conteudoArquivo:
-            print(f'O fornecedor {nome} foi encontrado')
+            print(f'Fornecedor:',nome)
             print('Email para contato:',conteudoArquivo[nome]["email"])
             print('Telefone:',conteudoArquivo[nome]["telefone"])
             print('Produtos oferecidos:',conteudoArquivo[nome]["produtos"])
@@ -201,12 +201,11 @@ def removeItem(nome,item):
             
             conteudoArquivo[nome]["produtos"].remove(item)
             json.dump(conteudoArquivo,tempArquivo,ensure_ascii=False,indent=4)
+            shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
         
         else:
             print('O fornecedor não apresenta esse produto como opção')
-    
-    shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
+
         
-            
         
             

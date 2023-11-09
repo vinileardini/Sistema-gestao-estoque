@@ -167,7 +167,7 @@ def encerrarPedido(numeroPedido):
                 conteudoMov[numeroPedido]["status"] = "finalizado"
                 json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
                 json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
-                
+                shutil.move(tempPedido.name,'arquivos\pedidos.json')
                 print('Pedido finalizado')
             
             else:
@@ -175,9 +175,6 @@ def encerrarPedido(numeroPedido):
                 
         else:
             print('Pedido inexistente')
-                
-    shutil.move(tempPedido.name,'arquivos\pedidos.json')
-    
         
                             
                             
@@ -214,7 +211,7 @@ def listarPedidos():
              print('Data abertura:',pedidos[chave]["data abertura"])
              print('Tipo:',pedidos[chave]["tipo"])
              print('Fornecedor:',pedidos[chave]["fornecedor"])
-             print('Status:',pedidos[chave]["itens"])
+             print('Itens:',pedidos[chave]["itens"])
         
 
 def verificarMovimentacao():
@@ -228,11 +225,11 @@ def verificarMovimentacao():
         for chave in chaves:
             
             print('*************************************************')
-            print(chave)
-            print(conteudoArquivo[chave]["data abertura"])
-            print(conteudoArquivo[chave]["tipo"])
-            print(conteudoArquivo[chave]["fornecedor"])
-            print(conteudoArquivo[chave]["itens"])
+            print('Numero pedido:',chave)
+            print('Data abertura:',conteudoArquivo[chave]["data abertura"])
+            print('Tipo movimentacao:',conteudoArquivo[chave]["tipo"])
+            print('Fornecedor:',conteudoArquivo[chave]["fornecedor"])
+            print('Itens:',conteudoArquivo[chave]["itens"])
         
         
         
