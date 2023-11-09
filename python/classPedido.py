@@ -238,32 +238,37 @@ def verificarMovimentacao():
         
 
 def pedidoEntrada(tipoProduto,quantidade):
-    
-    with open('arquivos\estoque.json','r') as arqEstoque,\
-        tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+    try:
+        with open('arquivos\estoque.json','r') as arqEstoque,\
+            tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+            
+            conteudoArquivo = json.load(arqEstoque)
+            
+            quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+            
+            conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) + int(quantidade)
+            
+            json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
         
-        conteudoArquivo = json.load(arqEstoque)
-        
-        quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
-        
-        conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) + int(quantidade)
-        
-        json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
-    
-    shutil.move(tempEstoque.name,'arquivos\estoque.json')
+        shutil.move(tempEstoque.name,'arquivos\estoque.json')
+    except:
+        print("Produto não cadastrado")
         
 
 def pedidoSaida(tipoProduto,quantidade):   
-    
-    with open('arquivos\estoque.json', 'r') as arqEstoque,\
-        tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+
+    try:    
+        with open('arquivos\estoque.json', 'r') as arqEstoque,\
+            tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+                
+            conteudoArquivo = json.load(arqEstoque)
             
-        conteudoArquivo = json.load(arqEstoque)
+            quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+            
+            conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
+            
+            json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
         
-        quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
-        
-        conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
-        
-        json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
-    
-    shutil.move(tempEstoque.name,'arquivos\estoque.json')
+        shutil.move(tempEstoque.name,'arquivos\estoque.json')
+    except:
+        print("Produto não cadastrado")

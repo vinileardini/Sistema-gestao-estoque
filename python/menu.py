@@ -182,7 +182,6 @@ def menu():
                                     
                                     if cadastNome not in infoUsuarios:
                                         
-                                        
                                         while True:
                                             
                                             cadastSenha = input('Defina a senha para o usuário:')
@@ -235,87 +234,96 @@ def menu():
                 tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
                 
                 conteudoFornecedores = json.load(fornecedores)
-            
-                if conteudoFornecedores[inputNomeForn]["senha"] == None:
-                
-                    print("É o seu primeiro acesso")
-                    novaSenha = input("Insira a nova senha:")
-                    verificaSenha = input("Insira novamente a senha:")
+
+                try:
+                    if conteudoFornecedores[inputNomeForn]["senha"] == None:
                     
-                    if novaSenha == verificaSenha:
+                        print("É o seu primeiro acesso")
+                        novaSenha = input("Insira a nova senha:")
+                        verificaSenha = input("Insira novamente a senha:")
+                        
+                        if novaSenha == verificaSenha:
+                        
+                            conteudoFornecedores[inputNomeForn]["senha"] = novaSenha
                     
-                        conteudoFornecedores[inputNomeForn]["senha"] = novaSenha
+                        else:
+                            print('Fornecedor já cadastrado')
                 
-                    else:
-                        print('Fornecedor já cadastrado')
+                        json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                
+                        shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
+                    
+                    
+                    elif conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
+                            print('*************************************************')            
+                            print('Menu fornecedor')
+                            print('**************************************************')
+                            print('1 - Verificar informações')
+                            print('2 - Alterar informações')
+                            print('3 - Visualizar pedidos')
+                            print('0 - Sair')
+                            escolhaForn = input('Insira a opção desejada:')
+                            print('*************************************************')
+
+                            # Verificar as informações do fornecedor - OK
+                            if escolhaForn == "1":
+
+                                classFornecedor.getInfoFornecedor(inputNomeForn)
+                                        
+                            # Alterar informações do fornecedor - OK
+                            elif escolhaForn == "2":
+                                
+                                print('1 - Alterar telefone')
+                                print('2 - Alterar email')
+                                print('3 - Adicionar item oferecido')
+                                print('4 - Remover item oferecido')
+                                print('0 - Sair')
+                                
+                                escolhaAlteracao = input('Escolha a opção desejada:')
+                                
+                                print('*************************************************')
+                        
+                                # Alteração telefone fornecedor - OK
+                                if escolhaAlteracao == "1":
+                                    
+                                    novoTel = input('Insira o novo telefone:')
+                                    
+                                    classFornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
+                                
+                                # Alteração email fornecedor - OK
+                                elif escolhaAlteracao == "2":
+                                    
+                                    novoEmail = input('Insira o novo email:')
+                                    
+                                    classFornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
+                                
+                                # Adição item oferecido pelo fornecedor - OK
+                                elif escolhaAlteracao == "3":
+                                    
+                                    classFornecedor.setProdutosFornecedor(inputNomeForn)
+                                
+                                # Remoção item oferecido pelo fornecedor - OK
+                                elif escolhaAlteracao == "4":
+                                    
+                                    itemRemovido = input('Insira o item a ser removido:')
+                                    classFornecedor.removeItem(inputNomeForn,itemRemovido)
+                                    
+                                # Encerra - OK
+                                elif escolhaAlteracao == "0":
+                                    
+                                    print('Retornando a área de login')
+                                    break
+                                
+                                else:
+                                    print('Número de escolhido inválido')
+                
+                except:
+                    print('Fornecedor não cadastrado ou senha incorreta')
             
                 json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
                 
             shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
             
-            if conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
-                    print('*************************************************')            
-                    print('Menu fornecedor')
-                    print('**************************************************')
-                    print('1 - Verificar informações')
-                    print('2 - Alterar informações')
-                    print('3 - Visualizar pedidos')
-                    print('0 - Sair')
-                    escolhaForn = input('Insira a opção desejada:')
-                    print('*************************************************')
-
-                    # Verificar as informações do fornecedor - OK
-                    if escolhaForn == "1":
-
-                        classFornecedor.getInfoFornecedor(inputNomeForn)
-                                
-                    # Alterar informações do fornecedor - OK
-                    elif escolhaForn == "2":
-                        
-                        print('1 - Alterar telefone')
-                        print('2 - Alterar email')
-                        print('3 - Adicionar item oferecido')
-                        print('4 - Remover item oferecido')
-                        print('0 - Sair')
-                        
-                        escolhaAlteracao = input('Escolha a opção desejada:')
-                        
-                        print('*************************************************')
-                
-                        # Alteração telefone fornecedor - OK
-                        if escolhaAlteracao == "1":
-                            
-                            novoTel = input('Insira o novo telefone:')
-                            
-                            classFornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
-                        
-                        # Alteração email fornecedor - OK
-                        elif escolhaAlteracao == "2":
-                            
-                            novoEmail = input('Insira o novo email:')
-                            
-                            classFornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
-                        
-                        # Adição item oferecido pelo fornecedor - OK
-                        elif escolhaAlteracao == "3":
-                            
-                            classFornecedor.setProdutosFornecedor(inputNomeForn)
-                        
-                        # Remoção item oferecido pelo fornecedor - OK
-                        elif escolhaAlteracao == "4":
-                            
-                            itemRemovido = input('Insira o item a ser removido:')
-                            classFornecedor.removeItem(inputNomeForn,itemRemovido)
-                            
-                        # Encerra - OK
-                        elif escolhaAlteracao == "0":
-                            
-                            print('Retornando a área de login')
-                            break
-                        
-                        else:
-                            print('Número de escolhido inválido')
-    
             
         elif escolha == '0':
             print('Encerrando...')
