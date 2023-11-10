@@ -207,5 +207,23 @@ def removeItem(nome,item):
             print('O fornecedor não apresenta esse produto como opção')
 
         
+def listaPedidosForn(nomeFornecedor):
+    
+    with open('arquivos\pedidos.json','r') as arquivoPedidos:
+        
+        conteudoArquivo = json.load(arquivoPedidos)
+        
+        chaves = conteudoArquivo.keys()
+        
+        for chave in chaves:
+            
+            if conteudoArquivo[chave]["fornecedor"] == nomeFornecedor:
+                
+                print('Pedido:',chave)
+                print('Itens:',conteudoArquivo[chave]["itens"])
+            
+
+            
+        
         
             

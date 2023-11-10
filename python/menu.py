@@ -331,6 +331,11 @@ def menu():
                                         
                                         else:
                                             print('Número escolhido inválido')
+                                            
+                                #Lista os pedidos vinculados ao fornecedor
+                                elif escolhaForn == "3":
+                                    
+                                    classFornecedor.listaPedidosForn(inputNomeForn)
                                     
                                 elif escolhaForn == "0":
                                     print('Retornando a área de login')
