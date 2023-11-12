@@ -119,153 +119,153 @@ class Pedido:
         shutil.move(tempMov.name,'arquivos\movimentacoes.json')
         
 
-#Pesquisas fora da classe
+    #Pesquisas 
 
-def pesquisaPedido(numeroPedido):
+    def pesquisaPedido(numeroPedido):
 
-    arquivoPedido = open('arquivos\pedidos.json','r')
-    conteudoPedido = json.load(arquivoPedido)
-
-    if numeroPedido in conteudoPedido:
-        print(f'Pedido {numeroPedido} existe')
-        
-        print('Itens do pedido:',conteudoPedido[numeroPedido]["itens"])
-        
-    else:
-        print(f'Pedido {numeroPedido} inexistente')
-
-
-def getStatus(numeroPedido):
-
-    arquivoPedido = open('arquivos\pedidos.json','r')
-    conteudoPedido = json.load(arquivoPedido)
-
-    if numeroPedido in conteudoPedido:
-    
-        print('O status do pedido é:',conteudoPedido[numeroPedido]["status"])
-
-    else:
-        print('Pedido inexistente')
-
-# Pronto
-def encerrarPedido(numeroPedido):
-
-    with open('arquivos\pedidos.json','r') as arquivoPedido,\
-        open('arquivos\movimentacoes.json','r') as arquivoMov,\
-            tempfile.NamedTemporaryFile('w',delete=False) as tempPedido,\
-            tempfile.NamedTemporaryFile('w',delete=False) as tempMov:
-        
-        
+        arquivoPedido = open('arquivos\pedidos.json','r')
         conteudoPedido = json.load(arquivoPedido)
-        conteudoMov = json.load(arquivoMov)
-        #verifica existencia do pedido
+
         if numeroPedido in conteudoPedido:
-            #verifica status do pedido
-            if conteudoPedido[numeroPedido]["status"] != "finalizado":
-                
-                conteudoPedido[numeroPedido]["status"] = "finalizado"
-                conteudoMov[numeroPedido]["status"] = "finalizado"
-                json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
-                json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
-                shutil.move(tempPedido.name,'arquivos\pedidos.json')
-                print('Pedido finalizado')
+            print(f'Pedido {numeroPedido} existe')
             
-            else:
-                print('Pedido já finalizado')
-                
+            print('Itens do pedido:',conteudoPedido[numeroPedido]["itens"])
+            
         else:
-            print('Pedido inexistente')
-        
-                            
-                            
+            print(f'Pedido {numeroPedido} inexistente')
 
-# função para excluir um pedido (pronto)
-def excluiPedido(numeroPedido):
 
-    with open('arquivos\pedidos.json','r') as arquivoPedido,\
-        tempfile.NamedTemporaryFile('w',delete=False) as tempPedido:
-        
+    def getStatus(numeroPedido):
+
+        arquivoPedido = open('arquivos\pedidos.json','r')
         conteudoPedido = json.load(arquivoPedido)
 
-        if conteudoPedido.HasKey(numeroPedido):
-            #Exclui o pedido informado do dicionario
-            conteudoPedido.pop(numeroPedido)
-            print(f'Pedido {numeroPedido} excluido')
-            json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+        if numeroPedido in conteudoPedido:
+        
+            print('O status do pedido é:',conteudoPedido[numeroPedido]["status"])
 
         else:
             print('Pedido inexistente')
 
-    shutil.move(tempPedido.name,'arquivos\pedidos.json')
+    # Pronto
+    def encerrarPedido(numeroPedido):
 
-def listarPedidos():
-    
-    with open('arquivos\pedidos.json','r') as arqPedidos:
-        
-        pedidos = json.load(arqPedidos)
-        
-        for chave in pedidos.keys():
+        with open('arquivos\pedidos.json','r') as arquivoPedido,\
+            open('arquivos\movimentacoes.json','r') as arquivoMov,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempPedido,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempMov:
             
-             print('*************************************************')
-             print('Número do pedido:',chave)
-             print('Data abertura:',pedidos[chave]["data abertura"])
-             print('Tipo:',pedidos[chave]["tipo"])
-             print('Fornecedor:',pedidos[chave]["fornecedor"])
-             print('Itens:',pedidos[chave]["itens"])
-        
-
-def verificarMovimentacao():
-    
-    with open('arquivos\movimentacoes.json','r') as arqMov:
-        
-        conteudoArquivo = json.load(arqMov)
-        
-        chaves = conteudoArquivo.keys()
-        
-        for chave in chaves:
             
-            print('*************************************************')
-            print('Numero pedido:',chave)
-            print('Data abertura:',conteudoArquivo[chave]["data abertura"])
-            print('Tipo movimentacao:',conteudoArquivo[chave]["tipo"])
-            print('Fornecedor:',conteudoArquivo[chave]["fornecedor"])
-            print('Itens:',conteudoArquivo[chave]["itens"])
-        
-        
-        
-
-def pedidoEntrada(tipoProduto,quantidade):
-    try:
-        with open('arquivos\estoque.json','r') as arqEstoque,\
-            tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
-            
-            conteudoArquivo = json.load(arqEstoque)
-            
-            quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
-            
-            conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) + int(quantidade)
-            
-            json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
-        
-        shutil.move(tempEstoque.name,'arquivos\estoque.json')
-    except:
-        print("Produto não cadastrado")
-        
-
-def pedidoSaida(tipoProduto,quantidade):   
-
-    try:    
-        with open('arquivos\estoque.json', 'r') as arqEstoque,\
-            tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+            conteudoPedido = json.load(arquivoPedido)
+            conteudoMov = json.load(arquivoMov)
+            #verifica existencia do pedido
+            if numeroPedido in conteudoPedido:
+                #verifica status do pedido
+                if conteudoPedido[numeroPedido]["status"] != "finalizado":
+                    
+                    conteudoPedido[numeroPedido]["status"] = "finalizado"
+                    conteudoMov[numeroPedido]["status"] = "finalizado"
+                    json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+                    json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
+                    shutil.move(tempPedido.name,'arquivos\pedidos.json')
+                    print('Pedido finalizado')
                 
-            conteudoArquivo = json.load(arqEstoque)
+                else:
+                    print('Pedido já finalizado')
+                    
+            else:
+                print('Pedido inexistente')
             
-            quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+                                
+                                
+
+    # função para excluir um pedido (pronto)
+    def excluiPedido(numeroPedido):
+
+        with open('arquivos\pedidos.json','r') as arquivoPedido,\
+            tempfile.NamedTemporaryFile('w',delete=False) as tempPedido:
             
-            conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
-            
-            json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+            conteudoPedido = json.load(arquivoPedido)
+
+            if conteudoPedido.HasKey(numeroPedido):
+                #Exclui o pedido informado do dicionario
+                conteudoPedido.pop(numeroPedido)
+                print(f'Pedido {numeroPedido} excluido')
+                json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+
+            else:
+                print('Pedido inexistente')
+
+        shutil.move(tempPedido.name,'arquivos\pedidos.json')
+
+    def listarPedidos():
         
-        shutil.move(tempEstoque.name,'arquivos\estoque.json')
-    except:
-        print("Produto não cadastrado")
+        with open('arquivos\pedidos.json','r') as arqPedidos:
+            
+            pedidos = json.load(arqPedidos)
+            
+            for chave in pedidos.keys():
+                
+                print('*************************************************')
+                print('Número do pedido:',chave)
+                print('Data abertura:',pedidos[chave]["data abertura"])
+                print('Tipo:',pedidos[chave]["tipo"])
+                print('Fornecedor:',pedidos[chave]["fornecedor"])
+                print('Itens:',pedidos[chave]["itens"])
+            
+
+    def verificarMovimentacao():
+        
+        with open('arquivos\movimentacoes.json','r') as arqMov:
+            
+            conteudoArquivo = json.load(arqMov)
+            
+            chaves = conteudoArquivo.keys()
+            
+            for chave in chaves:
+                
+                print('*************************************************')
+                print('Numero pedido:',chave)
+                print('Data abertura:',conteudoArquivo[chave]["data abertura"])
+                print('Tipo movimentacao:',conteudoArquivo[chave]["tipo"])
+                print('Fornecedor:',conteudoArquivo[chave]["fornecedor"])
+                print('Itens:',conteudoArquivo[chave]["itens"])
+            
+            
+            
+
+    def pedidoEntrada(tipoProduto,quantidade):
+        try:
+            with open('arquivos\estoque.json','r') as arqEstoque,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+                
+                conteudoArquivo = json.load(arqEstoque)
+                
+                quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+                
+                conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) + int(quantidade)
+                
+                json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+            
+            shutil.move(tempEstoque.name,'arquivos\estoque.json')
+        except:
+            print("Produto não cadastrado")
+            
+
+    def pedidoSaida(tipoProduto,quantidade):   
+
+        try:    
+            with open('arquivos\estoque.json', 'r') as arqEstoque,\
+                tempfile.NamedTemporaryFile('w',delete=False) as tempEstoque:
+                    
+                conteudoArquivo = json.load(arqEstoque)
+                
+                quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+                
+                conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
+                
+                json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+            
+            shutil.move(tempEstoque.name,'arquivos\estoque.json')
+        except:
+            print("Produto não cadastrado")

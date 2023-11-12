@@ -95,135 +95,135 @@ class Fornecedor:
                 
             
             
-#Métodos de pesquisa fora da classe
+    #Métodos de pesquisa fora da classe
 
-def getInfoFornecedor(nome):
-        
-    with open('arquivos\cadastroFornecedor.json','r') as arquivo:
-
-        conteudoArquivo = json.load(arquivo)
-    
-        if nome in conteudoArquivo:
-            print(f'Fornecedor:',nome)
-            print('Email para contato:',conteudoArquivo[nome]["email"])
-            print('Telefone:',conteudoArquivo[nome]["telefone"])
-            print('Produtos oferecidos:',conteudoArquivo[nome]["produtos"])
-        
-        else:
-            print('Não existe fornecedor com esse nome')
-
-
-
-#Feito
-def setEmailFornecedor(nome,novoEmail):
-    
-    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
-        tempfile.NamedTemporaryFile('w',delete=False) as alteracaoEmail:
+    def getInfoFornecedor(nome):
             
-        conteudoArquivo = json.load(arquivo)
-    
-        if nome in conteudoArquivo:
-            conteudoArquivo[nome]["email"] = novoEmail
-            json.dump(conteudoArquivo,alteracaoEmail,ensure_ascii=False,indent=4)
-    
-        else:
-            print('Não existe fornecedor com esse nome')   
-            
-    shutil.move(alteracaoEmail.name,'arquivos\cadastroFornecedor.json') 
+        with open('arquivos\cadastroFornecedor.json','r') as arquivo:
 
-
-def setTelefoneFornecedor(nome,novoTelefone):
-    
-    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
-        tempfile.NamedTemporaryFile('w',delete=False) as alteracaoTelefone:
-            
-        conteudoArquivo = json.load(arquivo)
-        
-        if nome in conteudoArquivo:
-            conteudoArquivo[nome]["telefone"] = novoTelefone
-            json.dump(conteudoArquivo,alteracaoTelefone,ensure_ascii=False,indent=4)
-        
-        else:
-            print('Não existe fornecedor com esse nome')     
-
-    shutil.move(alteracaoTelefone.name,'arquivos\cadastroFornecedor.json')
-
-#Feito
-def setProdutosFornecedor(nome):
-    
-    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
-        tempfile.NamedTemporaryFile('w',delete=False) as alteraProduto:
-            
             conteudoArquivo = json.load(arquivo)
-            
-            novosItens = []
-            
+        
             if nome in conteudoArquivo:
-                
-                while True:
-                
-                    novoItem = input('Insira o item a ser adicionado:')
-
-                    if novoItem not in conteudoArquivo[nome]["produtos"]:
-                        conteudoArquivo[nome]["produtos"].append(novoItem)
-                
-                
-                    print('0 - Parar inserção de novo item fornecido')
-                    print('1 - Adicionar novo item')
-                                
-                    escolhaCont = input('Escolha a opção desejada:')
-                                
-                    print('*************************************************')
-                                
-                    if escolhaCont == "0":
-                        print("Encerrando")
-                        break
-                    
-                    print('*************************************************')
-                    
-                
-                json.dump(conteudoArquivo,alteraProduto,ensure_ascii=False,indent=4)
+                print(f'Fornecedor:',nome)
+                print('Email para contato:',conteudoArquivo[nome]["email"])
+                print('Telefone:',conteudoArquivo[nome]["telefone"])
+                print('Produtos oferecidos:',conteudoArquivo[nome]["produtos"])
             
             else:
                 print('Não existe fornecedor com esse nome')
+
+
+
+    #Feito
+    def setEmailFornecedor(nome,novoEmail):
+        
+        with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+            tempfile.NamedTemporaryFile('w',delete=False) as alteracaoEmail:
+                
+            conteudoArquivo = json.load(arquivo)
+        
+            if nome in conteudoArquivo:
+                conteudoArquivo[nome]["email"] = novoEmail
+                json.dump(conteudoArquivo,alteracaoEmail,ensure_ascii=False,indent=4)
+        
+            else:
+                print('Não existe fornecedor com esse nome')   
+                
+        shutil.move(alteracaoEmail.name,'arquivos\cadastroFornecedor.json') 
+
+
+    def setTelefoneFornecedor(nome,novoTelefone):
+        
+        with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+            tempfile.NamedTemporaryFile('w',delete=False) as alteracaoTelefone:
+                
+            conteudoArquivo = json.load(arquivo)
             
-    shutil.move(alteraProduto.name,'arquivos\cadastroFornecedor.json')
+            if nome in conteudoArquivo:
+                conteudoArquivo[nome]["telefone"] = novoTelefone
+                json.dump(conteudoArquivo,alteracaoTelefone,ensure_ascii=False,indent=4)
+            
+            else:
+                print('Não existe fornecedor com esse nome')     
+
+        shutil.move(alteracaoTelefone.name,'arquivos\cadastroFornecedor.json')
+
+    #Feito
+    def setProdutosFornecedor(nome):
+        
+        with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+            tempfile.NamedTemporaryFile('w',delete=False) as alteraProduto:
+                
+                conteudoArquivo = json.load(arquivo)
+                
+                novosItens = []
+                
+                if nome in conteudoArquivo:
+                    
+                    while True:
+                    
+                        novoItem = input('Insira o item a ser adicionado:')
+
+                        if novoItem not in conteudoArquivo[nome]["produtos"]:
+                            conteudoArquivo[nome]["produtos"].append(novoItem)
+                    
+                    
+                        print('0 - Parar inserção de novo item fornecido')
+                        print('1 - Adicionar novo item')
+                                    
+                        escolhaCont = input('Escolha a opção desejada:')
+                                    
+                        print('*************************************************')
+                                    
+                        if escolhaCont == "0":
+                            print("Encerrando")
+                            break
+                        
+                        print('*************************************************')
+                        
+                    
+                    json.dump(conteudoArquivo,alteraProduto,ensure_ascii=False,indent=4)
+                
+                else:
+                    print('Não existe fornecedor com esse nome')
+                
+        shutil.move(alteraProduto.name,'arquivos\cadastroFornecedor.json')
+                    
+
+    def removeItem(nome,item):
+
+        with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
+            tempfile.NamedTemporaryFile('w',delete=False) as tempArquivo:
+                
+            conteudoArquivo = json.load(arquivo)
+            
+            if item in conteudoArquivo[nome]["produtos"]:
+                
+                conteudoArquivo[nome]["produtos"].remove(item)
+                json.dump(conteudoArquivo,tempArquivo,ensure_ascii=False,indent=4)
+                shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
+            
+            else:
+                print('O fornecedor não apresenta esse produto como opção')
+
+            
+    def listaPedidosForn(nomeFornecedor):
+        
+        with open('arquivos\pedidos.json','r') as arquivoPedidos:
+            
+            conteudoArquivo = json.load(arquivoPedidos)
+            
+            chaves = conteudoArquivo.keys()
+            
+            for chave in chaves:
+                
+                if conteudoArquivo[chave]["fornecedor"] == nomeFornecedor:
+                    
+                    print('Pedido:',chave)
+                    print('Itens:',conteudoArquivo[chave]["itens"])
                 
 
-def removeItem(nome,item):
-
-    with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
-        tempfile.NamedTemporaryFile('w',delete=False) as tempArquivo:
-            
-        conteudoArquivo = json.load(arquivo)
-        
-        if item in conteudoArquivo[nome]["produtos"]:
-            
-            conteudoArquivo[nome]["produtos"].remove(item)
-            json.dump(conteudoArquivo,tempArquivo,ensure_ascii=False,indent=4)
-            shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
-        
-        else:
-            print('O fornecedor não apresenta esse produto como opção')
-
-        
-def listaPedidosForn(nomeFornecedor):
-    
-    with open('arquivos\pedidos.json','r') as arquivoPedidos:
-        
-        conteudoArquivo = json.load(arquivoPedidos)
-        
-        chaves = conteudoArquivo.keys()
-        
-        for chave in chaves:
-            
-            if conteudoArquivo[chave]["fornecedor"] == nomeFornecedor:
                 
-                print('Pedido:',chave)
-                print('Itens:',conteudoArquivo[chave]["itens"])
             
-
             
-        
-        
-            
+                

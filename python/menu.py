@@ -1,12 +1,10 @@
 import json
 import tempfile
 import shutil
-import classPedido
 from classPedido import Pedido
 from classProduto import Produto
 from classFornecedor import Fornecedor
-import classFornecedor
-import classProduto
+
 
 
 def menu():
@@ -36,7 +34,7 @@ def menu():
                         if infoUsuarios[inputUsuario]["senha"] == senhaUsuario:
                             print('*************************************************')
                             print('Menu funcionário')
-                            classProduto.verificaQuantidadeEstoque()
+                            Produto.verificaQuantidadeEstoque()
                             print('*************************************************')
                             print('1 - Verificar estoque')
                             print('2 - Realizar pedido')
@@ -53,7 +51,7 @@ def menu():
                             # Verificar estoque
                             if escolhaUsuario == "1":
                                 
-                                classProduto.verificaEstoque()
+                                Produto.verificaEstoque()
                                 
                                 
                             # Realizar pedido 
@@ -87,11 +85,11 @@ def menu():
                                     
                                 if inputTipo == "entrada":
                                     
-                                    classPedido.pedidoEntrada(inputItem,inputQtItem)
+                                    Pedido.pedidoEntrada(inputItem,inputQtItem)
                                     
                                 elif inputTipo == "saida":
                                     
-                                    classPedido.pedidoSaida(inputItem,inputQtItem)
+                                    Pedido.pedidoSaida(inputItem,inputQtItem)
 
 
                                 print('*************************************************')
@@ -122,12 +120,12 @@ def menu():
                                 
                                 inputNumPedido = input('Insira o número do pedido a ser finalizado:')
                                 
-                                classPedido.encerrarPedido(inputNumPedido)
+                                Pedido.encerrarPedido(inputNumPedido)
                                 
                             # Verificar pedidos - lista todos
                             elif escolhaUsuario == "4":
                                 
-                                classPedido.listarPedidos()
+                                Pedido.listarPedidos()
                                 
                             
                             #Cadastro de produto 
@@ -183,7 +181,7 @@ def menu():
                             #Verificação de movimentações 
                             elif escolhaUsuario == "7":
                                 
-                                classPedido.verificarMovimentacao()
+                                Pedido.verificarMovimentacao()
                             
                             #Cadastro de novo funcionario
                             elif escolhaUsuario == "8":
@@ -281,7 +279,7 @@ def menu():
                                 # Verificar as informações do fornecedor 
                                 if escolhaForn == "1":
 
-                                    classFornecedor.getInfoFornecedor(inputNomeForn)
+                                    Fornecedor.getInfoFornecedor(inputNomeForn)
                                             
                                 # Alterar informações do fornecedor 
                                 elif escolhaForn == "2":
@@ -303,25 +301,25 @@ def menu():
                                             
                                             novoTel = input('Insira o novo telefone:')
                                             
-                                            classFornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
+                                            Fornecedor.setTelefoneFornecedor(inputNomeForn,novoTel)
                                         
                                         # Alteração email fornecedor 
                                         elif escolhaAlteracao == "2":
                                             
                                             novoEmail = input('Insira o novo email:')
                                             
-                                            classFornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
+                                            Fornecedor.setEmailFornecedor(inputNomeForn,novoEmail)
                                         
                                         # Adição item oferecido pelo fornecedor 
                                         elif escolhaAlteracao == "3":
                                             
-                                            classFornecedor.setProdutosFornecedor(inputNomeForn)
+                                            Fornecedor.setProdutosFornecedor(inputNomeForn)
                                         
                                         # Remoção item oferecido pelo fornecedor 
                                         elif escolhaAlteracao == "4":
                                             
                                             itemRemovido = input('Insira o item a ser removido:')
-                                            classFornecedor.removeItem(inputNomeForn,itemRemovido)
+                                            Fornecedor.removeItem(inputNomeForn,itemRemovido)
                                             
                                         # Encerra 
                                         elif escolhaAlteracao == "0":
@@ -335,7 +333,7 @@ def menu():
                                 #Lista os pedidos vinculados ao fornecedor
                                 elif escolhaForn == "3":
                                     
-                                    classFornecedor.listaPedidosForn(inputNomeForn)
+                                    Fornecedor.listaPedidosForn(inputNomeForn)
                                     
                                 elif escolhaForn == "0":
                                     print('Retornando a área de login')
