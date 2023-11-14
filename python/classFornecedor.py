@@ -1,19 +1,21 @@
 import json
 import tempfile
 import shutil
+from classPessoa import Pessoa
 
 
-class Fornecedor:
+class Fornecedor(Pessoa):
     
     #feito
     def __init__(self,nome,telefone,email,produtos=[]):
+        #Nome através de herança da classe Pessoa
+        super().__init__(nome)
         
-        self.__nomeFornecedor = nome
         self.__telefoneFornecedor = telefone
         self.__email = email
         self.__produtos = produtos
         
-        dadosFornecedor = {'telefone':self.__telefoneFornecedor, 'email':self.__email, 'produtos':self.__produtos}
+        dadosFornecedor = {'telefone':self.getTelefone(), 'email':self.getEmail(), 'produtos':self.getProdutos()}
         loginPadrao = {'senha':None}
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivoCadastroFornecedores,\

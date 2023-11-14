@@ -4,6 +4,7 @@ import shutil
 from classPedido import Pedido
 from classProduto import Produto
 from classFornecedor import Fornecedor
+from classFuncionario import Funcionario
 
 
 
@@ -190,32 +191,14 @@ def menu():
                                 elif escolhaUsuario == "8":
                                     
                                     cadastNome = input('Insira o nome do funcionario a ser cadastrado:')
+                                    registro = input('Insira o número de registro do funcionário:')
                                     
-                                    with tempfile.NamedTemporaryFile('w',delete=False) as tempFunc:
-                                        
-                                        if cadastNome not in infoUsuarios:
-                                            
-                                            while True:
-                                                
-                                                cadastSenha = input('Defina a senha para o usuário:')
-                                                repeteSenha = input('Insira novamente a senha:')
-                                                
-                                                if cadastSenha == repeteSenha:
-                                                    dadosUser = {"senha":cadastSenha}
-                                                    infoUsuarios[cadastNome] = dadosUser
-                                                    json.dump(infoUsuarios,tempFunc,ensure_ascii=False,indent=4)
-                                                    print('Funcionario cadastrado')
-                                                    break
-                                                
-                                                else:
-                                                    print('As senhas informadas são diferentes')
-                                        
-                                        else:
-                                            print('Funcionário já cadastrado')
-                                                
-                                    shutil.move(tempFunc.name,'arquivos\\usuario.json')   
-                                        
-                                        
+                                    try:
+                                        Funcionario(cadastNome,registro)
+                                    except:
+                                        print('Não foi possível cadastrar o novo funcionário')    
+                                    
+                                    
                                     
                                     
                                     
