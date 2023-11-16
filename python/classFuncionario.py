@@ -8,7 +8,7 @@ class Funcionario(Pessoa):
     def __init__(self,nome,registro):
         super().__init__(nome)
         
-        self.registro = registro
+        self.__registro = registro
 
 
         with open('arquivos\\usuario.json','r') as arqFuncionario,\
@@ -24,7 +24,7 @@ class Funcionario(Pessoa):
                         repeteSenha = input('Insira novamente a senha:')
                         
                         if cadastSenha == repeteSenha:
-                            dadosUser = {"senha":cadastSenha}
+                            dadosUser = {"registro":self.getRegistro(),"senha":cadastSenha}
                             conteudoArq[self.getNome()] = dadosUser
                             json.dump(conteudoArq,tempFunc,ensure_ascii=False,indent=4)
                             print('Funcionario cadastrado')
@@ -40,6 +40,10 @@ class Funcionario(Pessoa):
             
     def getNome(self):
         
-        return self.nome
+        return self.__nome
+
+    def getRegistro(self):
+
+        return self.__registro
     
 

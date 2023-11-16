@@ -60,7 +60,7 @@ class Fornecedor(Pessoa):
     #feito
     def getNome(self):
         
-        return self.__nomeFornecedor
+        return self.__nome
     #feito 
     def getEmail(self):
     
