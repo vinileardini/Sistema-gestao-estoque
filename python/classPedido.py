@@ -40,25 +40,32 @@ class Pedido:
                                 dados = json.load(saida)
                                 
                                 if self.getNumeroPedido() not in dados:
-                                    if not dados:
-                                        novoDado={}
-                                        novoDado[self.getNumeroPedido()] = dadosPedido
-                                        json.dump(novoDado,out,ensure_ascii=False,indent=4)
-                                        json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
+                                    
                                         
-                                    else:
-                                        dados[f'{self.getNumeroPedido()}'] = dadosPedido
-                                        json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-                                        json.dump(dados,outMov,ensure_ascii=False,indent=4)
+                                        if not dados:
+                                            novoDado={}
+                                            novoDado[self.getNumeroPedido()] = dadosPedido
+                                            json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                                            json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
                                         
-                                        shutil.move(out.name,'arquivos\pedidos.json')
-                                        shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                                        else:
+                                            dados[f'{self.getNumeroPedido()}'] = dadosPedido
+                                            json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
+                                            json.dump(dados,outMov,ensure_ascii=False,indent=4)
+                                            
+                                            shutil.move(out.name,'arquivos\pedidos.json')
+                                            shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                                            
+                                            
+                                            print('*************************************************')
+                                            print('Pedido criado')
+                                            
+                                            Pedido.getInfo()
+                                            
                                         
                                 else:
-                                    print('Já existe um pedido com este número')
-                                    
-                                
-                        
+                                    print('Já existe um pedido com este número')         
+                                      
                     else:
                         print('O fornecedor não oferece o item no pedido')
             else:
@@ -94,7 +101,6 @@ class Pedido:
         print('Itens:',self.getItensPedido())
         print('Status:',self.getStatusPedido())
     
-        
 
     #Pesquisas 
 

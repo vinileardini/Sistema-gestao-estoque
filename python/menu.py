@@ -85,7 +85,12 @@ def menu():
                                         elif continueItem != 0 and continueItem != 1:
                                             print('Opção inválida !!! Retornando ao menu')
                                             break
-                                        
+                                    
+                                    
+                                    print('*************************************************')
+                                    
+                                    Pedido(inputNumero,inputTipo,inputNomeForn,itens)
+                                    
                                         
                                     if inputTipo == "entrada":
                                         
@@ -96,27 +101,8 @@ def menu():
                                         Pedido.pedidoSaida(inputItem,inputQtItem)
 
 
-                                    print('*************************************************')
                                     
-                                    novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens)
-                                    
-                                    with open('arquivos\pedidos.json','r') as arqPedidos:
-                                        
-                                        conteudoPedidos = json.load(arqPedidos)
-                                        
-                                        if inputNumero in conteudoPedidos:
-                                        
-                                            print('Pedido criado')
-                                    
-                                            print('*************************************************')
-                                    
-                                            novoPedido.getInfo()
-                                        
-                                        else:
-                                            print('Não foi possível criar o pedido')
-                                            
-                                            print('*************************************************')
-                                
+
                                     
                                 
                                 # Finalizar pedido 
