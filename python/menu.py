@@ -215,6 +215,9 @@ def menu():
                         else:
                             print('*************************************************')
                             print('Usuário ou senha incorreta')
+                    else:
+                        print('*************************************************')
+                        print('Funcionário não cadastrado')
                         
                         
                         
@@ -230,7 +233,6 @@ def menu():
                     tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
                     
                     conteudoFornecedores = json.load(fornecedores)
-
                     try:
                         if conteudoFornecedores[inputNomeForn]["senha"] == None:
                         
@@ -332,13 +334,14 @@ def menu():
                             print('*************************************************')
                             print('Usuário ou senha incorreta')
                             break
-                    
                     except:
-                        print('Fornecedor não cadastrado ou senha incorreta')
-                
-                        json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                        print('*************************************************')
+                        print('Fornecedor não cadastrado')
+                        break
+                   
+                    json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
                     
-                        shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
+                shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
             
             
             

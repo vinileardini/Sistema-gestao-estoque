@@ -39,26 +39,30 @@ class Pedido:
                                                         
                                 dados = json.load(saida)
                                 
-                                if not dados:
-                                    novoDado={}
-                                    novoDado[self.getNumeroPedido()] = dadosPedido
-                                    json.dump(novoDado,out,ensure_ascii=False,indent=4)
-                                    json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
-                                    
+                                if self.getNumeroPedido() not in dados:
+                                    if not dados:
+                                        novoDado={}
+                                        novoDado[self.getNumeroPedido()] = dadosPedido
+                                        json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                                        json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
+                                        
+                                    else:
+                                        dados[f'{self.getNumeroPedido()}'] = dadosPedido
+                                        json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
+                                        json.dump(dados,outMov,ensure_ascii=False,indent=4)
+                                        
+                                        shutil.move(out.name,'arquivos\pedidos.json')
+                                        shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                                        
                                 else:
-                                    dados[f'{self.getNumeroPedido()}'] = dadosPedido
-                                    json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-                                    json.dump(dados,outMov,ensure_ascii=False,indent=4)
-                            
-                        
-                        shutil.move(out.name,'arquivos\pedidos.json')
-                        shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                                    print('Já existe um pedido com este número')
+                                    
+                                
                         
                     else:
                         print('O fornecedor não oferece o item no pedido')
             else:
                 print('Fornecedor não cadastrado')
-
     
     
     def getNumeroPedido(self):
@@ -90,34 +94,6 @@ class Pedido:
         print('Itens:',self.getItensPedido())
         print('Status:',self.getStatusPedido())
     
-        
-    def finalizaPedido(self):
-        
-        self.__status = "finalizado"
-        
-        with open('arquivos\pedidos.json','r') as saida,\
-            open ('arquivos\movimentacoes.json','r') as saidaMov,\
-                tempfile.NamedTemporaryFile('w',delete=False) as tempPedido,\
-                tempfile.NamedTemporaryFile('w',delete=False) as tempMov:
-                    
-            conteudoPedidos = json.load(saida)
-            conteudoMov = json.load(saidaMov)
-            
-            conteudoPedidos[self.__numeroPedido]["status"] = "finalizado"
-            json.dump(conteudoPedidos,tempPedido,ensure_ascii=False,indent=4)
-            
-            if conteudoMov[self.__numeroPedido]["status"] == "aberto":
-                
-                conteudoMov[self.__numeroPedido]["status"] = "finalizado"
-                
-                data_e_hora = datetime.now()
-                
-                conteudoMov[self.__numeroPedido]["data fechamento"] = data_e_hora.strftime('%d/%m/%Y %H:%M:%S')
-                
-                json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
-        
-        shutil.move(tempPedido.name,'arquivos\pedidos.json')
-        shutil.move(tempMov.name,'arquivos\movimentacoes.json')
         
 
     #Pesquisas 
@@ -166,6 +142,8 @@ class Pedido:
                     
                     conteudoPedido[numeroPedido]["status"] = "finalizado"
                     conteudoMov[numeroPedido]["status"] = "finalizado"
+                    data_e_hora = datetime.now()
+                    conteudoMov[numeroPedido]["data fechamento"] = data_e_hora.strftime('%d/%m/%Y %H:%M:%S')
                     json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
                     json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
                     shutil.move(tempPedido.name,'arquivos\pedidos.json')

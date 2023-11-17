@@ -217,12 +217,26 @@ class Fornecedor(Pessoa):
             
             chaves = conteudoArquivo.keys()
             
+            cont = 0
+            
+            
             for chave in chaves:
                 
                 if conteudoArquivo[chave]["fornecedor"] == nomeFornecedor:
-                    
-                    print('Pedido:',chave)
+                    print('*************************************************')
+                    print('Número do Pedido:',chave)
                     print('Itens:',conteudoArquivo[chave]["itens"])
+                    cont += 1
+                else:
+                    pass
+                
+            if cont == 0:
+                print('O fornecedor não possui pedido')
+                
+                
+            
+            
+                    
                 
 
                 
