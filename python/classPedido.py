@@ -9,17 +9,18 @@ import os
 
 class Pedido:
     
-    def __init__(self,numeroPedido,tipo,fornecedor,itens=[]):
+    def __init__(self,numeroPedido,tipo,fornecedor,itens=[],qtItens=[]):
         
         self.__numeroPedido = numeroPedido
         self.__tipo = tipo
         self.__fornecedor = fornecedor
         self.__itensPedido = itens
         self.__status = 'aberto'
+        self.__qtItens = qtItens
         self.pedidoRealizado = True
         
         data_e_hora = datetime.now()
-        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
+        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'status':self.getStatusPedido(),'itens':self.getItensPedido(),'quantidade':self.getQtItensPedido()}
 
         #Verificação se o fornecedor está cadastrado - OK
         with open('arquivos\cadastroFornecedor.json','r') as arqFornecedor:
@@ -33,7 +34,7 @@ class Pedido:
                     if item in conteudoArquivo[self.getFornecedor()]["produtos"]:
                         dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
                         
-                        with open('arquivos\pedidos.json','r') as saida, \
+                        with open('arquivos\pedidos.json','r') as saida,\
                             open('arquivos\movimentacoes.json','r') as saidaMov,\
                                 tempfile.NamedTemporaryFile('w',delete=False) as out,\
                                 tempfile.NamedTemporaryFile('w',delete=False) as outMov:
@@ -43,32 +44,33 @@ class Pedido:
                                 if self.getNumeroPedido() not in dados:
                                     
                                         
-                                        if not dados:
-                                            novoDado={}
-                                            novoDado[self.getNumeroPedido()] = dadosPedido
-                                            json.dump(novoDado,out,ensure_ascii=False,indent=4)
-                                            json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
+                                    if not dados:
+                                        novoDado={}
+                                        novoDado[self.getNumeroPedido()] = dadosPedido
+                                        json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                                        json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
+                                    
+                                    else:
+                                        dados[f'{self.getNumeroPedido()}'] = dadosPedido
+                                        json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
+                                        json.dump(dados,outMov,ensure_ascii=False,indent=4)
                                         
-                                        else:
-                                            dados[f'{self.getNumeroPedido()}'] = dadosPedido
-                                            json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-                                            json.dump(dados,outMov,ensure_ascii=False,indent=4)
-                                            
-                                            shutil.move(out.name,'arquivos\pedidos.json')
-                                            shutil.move(outMov.name,'arquivos\movimentacoes.json')
-                                            
-                                            
-                                            print('*************************************************')
-                                            print('Pedido criado')
-                                            
-                                            Pedido.getInfo()
                                         
-                                            
+        
+                                    print('*************************************************')
+                                    print('Pedido criado')
+                                        
+                                    self.getInfo()
+                                
+                                    shutil.move(out.name,'arquivos\pedidos.json')
+                                    shutil.move(outMov.name,'arquivos\movimentacoes.json') 
+                                                
                                         
                                 else:
                                     print('Já existe um pedido com este número')  
                                     
-                                    self.pedidoRealizado = False       
+                                    self.pedidoRealizado = False  
+                                        
                                       
                     else:
                         print('O fornecedor não oferece o item no pedido')
@@ -91,6 +93,10 @@ class Pedido:
     def getItensPedido(self):
         
         return self.__itensPedido
+    
+    def getQtItensPedido(self):
+        
+        return self.__qtItens
         
     def getStatusPedido(self):
         

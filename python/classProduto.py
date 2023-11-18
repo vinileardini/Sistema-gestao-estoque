@@ -211,6 +211,9 @@ class Produto:
                     print(textoVermelho + "Aviso !!!  Baixa quantidade do produto: " + chaveAtual)
                     print(textoVermelho+'*************************************************'+resetCor)
                 
+                    
+                    
+                
         
             
             

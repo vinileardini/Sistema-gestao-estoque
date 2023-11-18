@@ -65,13 +65,16 @@ def menu():
                                     inputTipo = input('Insira o tipo de pedido (entrada/saida):')
                                     inputNomeForn = input('Insira o nome do fornecedor:')
                                     itens = []
+                                    qtItens = []
                                     
                                     #Verificação para a inserção de + um item no pedido
                                     while True:
                                         inputItem = input('Insira o item no pedido:')
                                         itens.append(inputItem)
                                         inputQtItem = input('Insira a quantidade do item:')
+                                        qtItens.append(inputQtItem)
                                         
+        
                                         print('*************************************************')
                                         
                                         print('0 - Parar inserção de novo item no pedido')
@@ -89,7 +92,7 @@ def menu():
                                     
                                     print('*************************************************')
                                     
-                                    novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens)
+                                    novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens,qtItens)
                                     
                                     
                                     if novoPedido.getPedidoRealizado() == True:
@@ -105,9 +108,7 @@ def menu():
                                         pass
                                     
 
-                                    
-
-                                    
+                                
                                 
                                 # Finalizar pedido 
                                 elif escolhaUsuario == "3":
