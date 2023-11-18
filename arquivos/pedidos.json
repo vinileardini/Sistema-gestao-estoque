@@ -34,5 +34,14 @@
         "itens":[
             "teclado"
         ]
+    },
+    "100":{
+        "data abertura":"18/11/2023 14:14:44",
+        "tipo":"entrada",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "teclado"
+        ]
     }
 }

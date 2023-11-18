@@ -39,37 +39,41 @@ class Pedido:
                                 tempfile.NamedTemporaryFile('w',delete=False) as out,\
                                 tempfile.NamedTemporaryFile('w',delete=False) as outMov:
                                                         
-                                dados = json.load(saida)
+                            dados = json.load(saida)
                                 
-                                if self.getNumeroPedido() not in dados:
-                                    
+                            if self.getNumeroPedido() not in dados:
                                         
-                                    if not dados:
-                                        novoDado={}
-                                        novoDado[self.getNumeroPedido()] = dadosPedido
-                                        json.dump(novoDado,out,ensure_ascii=False,indent=4)
-                                        json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
-                                    
-                                    else:
-                                        dados[f'{self.getNumeroPedido()}'] = dadosPedido
-                                        json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-                                        json.dump(dados,outMov,ensure_ascii=False,indent=4)
-                                        
-                                        
-        
-                                    print('*************************************************')
-                                    print('Pedido criado')
-                                        
-                                    self.getInfo()
+                                            
+                                if not dados:
+                                    novoDado={}
+                                    novoDado[self.getNumeroPedido()] = dadosPedido
+                                    json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                                    json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
                                 
-                                    shutil.move(out.name,'arquivos\pedidos.json')
-                                    shutil.move(outMov.name,'arquivos\movimentacoes.json') 
-                                                
-                                        
                                 else:
+                                    dados[f'{self.getNumeroPedido()}'] = dadosPedido
+                                    json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
+                                    json.dump(dados,outMov,ensure_ascii=False,indent=4)
+                                    
+                                    
+
+                                print('*************************************************')
+                                print('Pedido criado')
+                                    
+                                self.getInfo()
+                                        
+                            else:
                                     print('Já existe um pedido com este número')  
                                     
                                     self.pedidoRealizado = False  
+                            
+                        if self.getPedidoRealizado() == True:
+                                
+                            shutil.move(out.name,'arquivos\pedidos.json')
+                            shutil.move(outMov.name,'arquivos\movimentacoes.json') 
+                        else:
+                            pass
+                                                
                                         
                                       
                     else:
@@ -109,6 +113,7 @@ class Pedido:
     
     def getInfo(self):
         
+        print('*************************************************')
         print('Número do pedido:',self.getNumeroPedido())
         print('Tipo:',self.getTipoPedido())
         print('Fornecedor:',self.getFornecedor())
