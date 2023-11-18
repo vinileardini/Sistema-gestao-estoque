@@ -16,6 +16,7 @@ class Pedido:
         self.__fornecedor = fornecedor
         self.__itensPedido = itens
         self.__status = 'aberto'
+        self.pedidoRealizado = True
         
         data_e_hora = datetime.now()
         dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
@@ -61,16 +62,23 @@ class Pedido:
                                             print('Pedido criado')
                                             
                                             Pedido.getInfo()
+                                        
                                             
                                         
                                 else:
-                                    print('Já existe um pedido com este número')         
+                                    print('Já existe um pedido com este número')  
+                                    
+                                    self.pedidoRealizado = False       
                                       
                     else:
                         print('O fornecedor não oferece o item no pedido')
             else:
                 print('Fornecedor não cadastrado')
     
+    
+    def getPedidoRealizado(self):
+        
+        return self.pedidoRealizado
     
     def getNumeroPedido(self):
         

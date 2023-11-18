@@ -89,17 +89,21 @@ def menu():
                                     
                                     print('*************************************************')
                                     
-                                    Pedido(inputNumero,inputTipo,inputNomeForn,itens)
+                                    novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens)
                                     
+                                    
+                                    if novoPedido.getPedidoRealizado() == True:
+                                    
+                                        if inputTipo == "entrada":
                                         
-                                    if inputTipo == "entrada":
+                                            Pedido.pedidoEntrada(inputItem,inputQtItem)
                                         
-                                        Pedido.pedidoEntrada(inputItem,inputQtItem)
+                                        elif inputTipo == "saida":
                                         
-                                    elif inputTipo == "saida":
-                                        
-                                        Pedido.pedidoSaida(inputItem,inputQtItem)
-
+                                            Pedido.pedidoSaida(inputItem,inputQtItem)
+                                    else:
+                                        pass
+                                    
 
                                     
 
