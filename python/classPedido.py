@@ -29,56 +29,64 @@ class Pedido:
             
             if self.getFornecedor() in conteudoArquivo:
                 
+                itensNaoFornecidos = 0
+                
                 for item in itens:
                     
-                    if item in conteudoArquivo[self.getFornecedor()]["produtos"]:
-                        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido(),'qtItens':self.getQtItensPedido()}
-                        
-                        with open('arquivos\pedidos.json','r') as saida,\
-                            open('arquivos\movimentacoes.json','r') as saidaMov,\
-                                tempfile.NamedTemporaryFile('w',delete=False) as out,\
-                                tempfile.NamedTemporaryFile('w',delete=False) as outMov:
-                                                        
-                            dados = json.load(saida)
-                                
-                            if self.getNumeroPedido() not in dados:
-                                        
-                                           
-                                if not dados:
-                                    novoDado={}
-                                    novoDado[self.getNumeroPedido()] = dadosPedido
-                                    json.dump(novoDado,out,ensure_ascii=False,indent=4)
-                                    json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
-                                
-                                else:
-                                    dados[f'{self.getNumeroPedido()}'] = dadosPedido
-                                    json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
-                                    json.dump(dados,outMov,ensure_ascii=False,indent=4)
-                                    
-                                    
-
-                                print('*************************************************')
-                                print('Pedido criado')
-                                    
-                                self.getInfo()
-                                        
-                            else:
-                                    print('Já existe um pedido com este número')  
-                                    
-                                    self.pedidoRealizado = False  
-                            
-                        if self.getPedidoRealizado() == True:
-                                
-                            shutil.move(out.name,'arquivos\pedidos.json')
-                            shutil.move(outMov.name,'arquivos\movimentacoes.json')
-                            
-                        else:
-                            pass
-                                                
-                                        
+                    if item in conteudoArquivo[self.getFornecedor()]["produtos"]: 
+                        pass
                                       
                     else:
-                        print('O fornecedor não oferece o item no pedido')
+                        itensNaoFornecidos += 1
+                    
+                if itensNaoFornecidos == 0:
+                    dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido(),'qtItens':self.getQtItensPedido()}
+                        
+                    with open('arquivos\pedidos.json','r') as saida,\
+                        open('arquivos\movimentacoes.json','r') as saidaMov,\
+                            tempfile.NamedTemporaryFile('w',delete=False) as out,\
+                            tempfile.NamedTemporaryFile('w',delete=False) as outMov:
+                                                    
+                        dados = json.load(saida)
+                            
+                        if self.getNumeroPedido() not in dados:
+                                    
+                                    
+                            if not dados:
+                                novoDado={}
+                                novoDado[self.getNumeroPedido()] = dadosPedido
+                                json.dump(novoDado,out,ensure_ascii=False,indent=4)
+                                json.dump(novoDado,outMov,ensure_ascii=False,indent=4)
+                            
+                            else:
+                                dados[f'{self.getNumeroPedido()}'] = dadosPedido
+                                json.dump(dados,out,ensure_ascii=False,indent=4,separators=(',',':'))
+                                json.dump(dados,outMov,ensure_ascii=False,indent=4)
+                                
+                                
+
+                            print('*************************************************')
+                            print('Pedido criado')
+                                
+                            self.getInfo()
+                                    
+                        else:
+                                print('Já existe um pedido com este número')  
+                                
+                                self.pedidoRealizado = False  
+                        
+                    if self.getPedidoRealizado() == True:
+                            
+                        shutil.move(out.name,'arquivos\pedidos.json')
+                        shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                        
+                    else:
+                        pass
+                else:
+                    print('*************************************************')
+                    print('Pedido não realizado')
+                    print('Fornecedor não fornece item no pedido')
+                               
             else:
                 print('Fornecedor não cadastrado')
     

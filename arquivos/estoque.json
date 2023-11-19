@@ -4,7 +4,7 @@
         "categoria": "periferico",
         "preco_de_compra": 80.0,
         "preco_de_venda": 99.99,
-        "quantidade": 20
+        "quantidade": 30
     },
     "camiseta": {
         "marca": "polo",

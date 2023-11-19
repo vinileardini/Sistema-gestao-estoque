@@ -163,5 +163,33 @@
         "qtItens":[
             "10"
         ]
+    },
+    "090":{
+        "data abertura":"19/11/2023 17:41:45",
+        "tipo":"entrada",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "teclado",
+            "camiseta"
+        ],
+        "qtItens":[
+            "10",
+            "10"
+        ]
+    },
+    "050":{
+        "data abertura":"19/11/2023 20:02:59",
+        "tipo":"entrada",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "teclado",
+            "mouse"
+        ],
+        "qtItens":[
+            "10",
+            "10"
+        ]
     }
 }
