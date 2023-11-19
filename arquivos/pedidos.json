@@ -43,5 +43,29 @@
         "itens":[
             "teclado"
         ]
+    },
+    "900":{
+        "data abertura":"18/11/2023 14:53:38",
+        "tipo":"saida",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "teclado"
+        ],
+        "qtItens":[
+            "10"
+        ]
+    },
+    "453543":{
+        "data abertura":"18/11/2023 21:25:32",
+        "tipo":"saida",
+        "fornecedor":"vini",
+        "status":"aberto",
+        "itens":[
+            "teclado"
+        ],
+        "qtItens":[
+            "10"
+        ]
     }
 }

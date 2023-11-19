@@ -32,7 +32,7 @@ class Pedido:
                 for item in itens:
                     
                     if item in conteudoArquivo[self.getFornecedor()]["produtos"]:
-                        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido()}
+                        dadosPedido = {'data abertura': data_e_hora.strftime('%d/%m/%Y %H:%M:%S'),'tipo': self.getTipoPedido(),'fornecedor':self.getFornecedor(),'status':self.getStatusPedido(),'itens':self.getItensPedido(),'qtItens':self.getQtItensPedido()}
                         
                         with open('arquivos\pedidos.json','r') as saida,\
                             open('arquivos\movimentacoes.json','r') as saidaMov,\
@@ -43,7 +43,7 @@ class Pedido:
                                 
                             if self.getNumeroPedido() not in dados:
                                         
-                                            
+                                           
                                 if not dados:
                                     novoDado={}
                                     novoDado[self.getNumeroPedido()] = dadosPedido
@@ -266,10 +266,38 @@ class Pedido:
                 
                 quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
                 
-                conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
+                if int(quantidade) <= quantidadeEstoque:
                 
-                json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+                    conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
+                
+                    json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+                    
+                    shutil.move(tempEstoque.name,'arquivos\estoque.json')
+                
+                else:
+                    print('Não foi possível realizar o pedido devido ao número de produtos no estoque')
             
-            shutil.move(tempEstoque.name,'arquivos\estoque.json')
+           
         except:
             print("Produto não cadastrado")
+            
+    
+    def verificaQtEstoque(tipoProduto,quantidade):
+        
+        try:
+            with open('arquivos\estoque.json') as arqEstoque:
+                
+                conteudoArquivo = json.load(arqEstoque)
+                
+                quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
+                
+                if int(quantidade) <= quantidadeEstoque:
+                    
+                    return True
+                
+                else:
+                    print('Não existe essa quantidade deste produto em estoque neste momento')
+                    return False
+                
+        except:
+            print('Produto não cadastrado')
