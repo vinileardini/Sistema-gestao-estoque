@@ -110,6 +110,10 @@ class Pedido:
     def getFornecedor(self):
         
         return self.__fornecedor
+    
+    def getQtItens(self):
+        
+        return self.__qtItens
 
     
     def getInfo(self):
@@ -119,6 +123,7 @@ class Pedido:
         print('Tipo:',self.getTipoPedido())
         print('Fornecedor:',self.getFornecedor())
         print('Itens:',self.getItensPedido())
+        print('Quantidade de cada item:',self.getQtItens())
         print('Status:',self.getStatusPedido())
     
 
