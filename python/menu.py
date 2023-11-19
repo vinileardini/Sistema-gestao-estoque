@@ -70,17 +70,14 @@ def menu():
                                     #Verificação para a inserção de + um item no pedido
                                     while True:
                                         inputItem = input('Insira o item no pedido:')
-                                        itens.append(inputItem)
                                         inputQtItem = input('Insira a quantidade do item:')
                                         
                                         if Pedido.verificaQtEstoque(inputItem,inputQtItem) == True:
+                                            itens.append(inputItem)
                                             qtItens.append(inputQtItem)
                                         else:
                                             print('Item não adicionado ao pedido')
                                         
-                                        
-                                        
-        
                                         print('*************************************************')
                                         
                                         print('0 - Parar inserção de novo item no pedido')
@@ -96,11 +93,14 @@ def menu():
                                             break
                                     
                                     
-                                    print('*************************************************')
+                                        print('*************************************************')
                                     
-                                    if len(qtItens) > 0:
+                                    if len(itens) > 0:  
                                         novoPedido = Pedido(inputNumero,inputTipo,inputNomeForn,itens,qtItens)
-                                        
+                                    else:
+                                        print('Pedido não realizado devido a não inserção de itens')
+                                    
+                                    try:
                                         if novoPedido.getPedidoRealizado() == True:
                                     
                                             if inputTipo == "entrada":
@@ -112,7 +112,7 @@ def menu():
                                                 Pedido.pedidoSaida(inputItem,inputQtItem)
                                             else:
                                                 pass
-                                    else:
+                                    except:
                                         print('Pedido não realizado')
                                     
                                 

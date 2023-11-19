@@ -70,7 +70,8 @@ class Pedido:
                         if self.getPedidoRealizado() == True:
                                 
                             shutil.move(out.name,'arquivos\pedidos.json')
-                            shutil.move(outMov.name,'arquivos\movimentacoes.json') 
+                            shutil.move(outMov.name,'arquivos\movimentacoes.json')
+                            
                         else:
                             pass
                                                 
@@ -266,16 +267,18 @@ class Pedido:
                 
                 quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
                 
-                if int(quantidade) <= quantidadeEstoque:
+                if int(quantidade) <= int(quantidadeEstoque):
                 
                     conteudoArquivo[tipoProduto]["quantidade"] = int(quantidadeEstoque) - int(quantidade)
                 
                     json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
-                    
-                    shutil.move(tempEstoque.name,'arquivos\estoque.json')
                 
                 else:
                     print('Não foi possível realizar o pedido devido ao número de produtos no estoque')
+                    
+                    json.dump(conteudoArquivo,tempEstoque,ensure_ascii=False,indent=4)
+                    
+            shutil.move(tempEstoque.name,'arquivos\estoque.json')
             
            
         except:
