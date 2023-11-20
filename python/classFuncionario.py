@@ -8,6 +8,7 @@ class Funcionario(Pessoa):
     def __init__(self,nome,registro):
         super().__init__(nome)
         
+        self.__nome = nome
         self.__registro = registro
 
 

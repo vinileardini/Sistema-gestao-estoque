@@ -1,193 +1,193 @@
 {
-    "10":{
-        "data abertura":"07/11/2023 13:35:48",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "10": {
+        "data abertura": "07/11/2023 13:35:48",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "mouse"
         ]
     },
-    "9":{
-        "data abertura":"07/11/2023 15:55:58",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "9": {
+        "data abertura": "07/11/2023 15:55:58",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "mouse"
         ]
     },
-    "59":{
-        "data abertura":"07/11/2023 16:24:07",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "59": {
+        "data abertura": "07/11/2023 16:24:07",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ]
     },
-    "65":{
-        "data abertura":"10/11/2023 13:54:22",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "65": {
+        "data abertura": "10/11/2023 13:54:22",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ]
     },
-    "100":{
-        "data abertura":"18/11/2023 14:14:44",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "100": {
+        "data abertura": "18/11/2023 14:14:44",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ]
     },
-    "900":{
-        "data abertura":"18/11/2023 14:53:38",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "900": {
+        "data abertura": "18/11/2023 14:53:38",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "453543":{
-        "data abertura":"18/11/2023 21:25:32",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "453543": {
+        "data abertura": "18/11/2023 21:25:32",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "786576547":{
-        "data abertura":"19/11/2023 11:41:35",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "786576547": {
+        "data abertura": "19/11/2023 11:41:35",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "65463442":{
-        "data abertura":"19/11/2023 15:24:49",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "65463442": {
+        "data abertura": "19/11/2023 15:24:49",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "431431431":{
-        "data abertura":"19/11/2023 15:40:22",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "431431431": {
+        "data abertura": "19/11/2023 15:40:22",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "12":{
-        "data abertura":"19/11/2023 17:19:44",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "12": {
+        "data abertura": "19/11/2023 17:19:44",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "1234":{
-        "data abertura":"19/11/2023 17:20:22",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "1234": {
+        "data abertura": "19/11/2023 17:20:22",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "87":{
-        "data abertura":"19/11/2023 17:21:53",
-        "tipo":"saida",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "87": {
+        "data abertura": "19/11/2023 17:21:53",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "54":{
-        "data abertura":"19/11/2023 17:22:18",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "54": {
+        "data abertura": "19/11/2023 17:22:18",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "8765":{
-        "data abertura":"19/11/2023 17:25:11",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "8765": {
+        "data abertura": "19/11/2023 17:25:11",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado"
         ],
-        "qtItens":[
+        "qtItens": [
             "10"
         ]
     },
-    "090":{
-        "data abertura":"19/11/2023 17:41:45",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "090": {
+        "data abertura": "19/11/2023 17:41:45",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
             "teclado",
             "camiseta"
         ],
-        "qtItens":[
+        "qtItens": [
             "10",
             "10"
         ]
     },
-    "050":{
-        "data abertura":"19/11/2023 20:02:59",
-        "tipo":"entrada",
-        "fornecedor":"vini",
-        "status":"aberto",
-        "itens":[
+    "050": {
+        "data abertura": "19/11/2023 20:02:59",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "finalizado",
+        "itens": [
             "teclado",
             "mouse"
         ],
-        "qtItens":[
+        "qtItens": [
             "10",
             "10"
         ]

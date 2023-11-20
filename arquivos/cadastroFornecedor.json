@@ -30,5 +30,12 @@
             "mouse",
             "fone de ouvido"
         ]
+    },
+    "yuri": {
+        "telefone": "31231232",
+        "email": "yuri@gmail.com",
+        "produtos": [
+            "mouse"
+        ]
     }
 }

@@ -185,14 +185,20 @@ class Pedido:
                     conteudoMov[numeroPedido]["data fechamento"] = data_e_hora.strftime('%d/%m/%Y %H:%M:%S')
                     json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
                     json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
-                    shutil.move(tempPedido.name,'arquivos\pedidos.json')
+                    
                     print('Pedido finalizado')
                 
                 else:
                     print('Pedido já finalizado')
-                    
+                    json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+            
             else:
                 print('Pedido inexistente')
+                json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+            
+        shutil.move(tempPedido.name,'arquivos\pedidos.json')
+                    
+           
             
                                 
                                 

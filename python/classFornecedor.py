@@ -11,6 +11,7 @@ class Fornecedor(Pessoa):
         #Nome através de herança da classe Pessoa
         super().__init__(nome)
         
+        self.__nome = nome
         self.__telefoneFornecedor = telefone
         self.__email = email
         self.__produtos = produtos
@@ -28,22 +29,22 @@ class Fornecedor(Pessoa):
             
                 if not fornecedores:
                     #verifica se já existe fornecedor com esse nome
-                    if self.__nomeFornecedor not in fornecedores:
+                    if self.getNome() not in fornecedores:
                         novoFornecedor = {}
-                        novoFornecedor[self.__nomeFornecedor] = dadosFornecedor
+                        novoFornecedor[self.getNome()] = dadosFornecedor
                         json.dump(novoFornecedor,tempCadastroFornecedores,ensure_ascii=False,indent=4)
                     else:
                         print('Fornecedor já existente')
                     
                 else:
-                    fornecedores[self.__nomeFornecedor] = dadosFornecedor
+                    fornecedores[self.getNome()] = dadosFornecedor
                     json.dump(fornecedores,tempCadastroFornecedores,ensure_ascii=False,indent=4)
                 
                 
                 if not loginFornecedores:
                     
-                    if self.__nomeFornecedor not in loginFornecedores:
-                        loginFornecedores[self.__nomeFornecedor] = loginPadrao
+                    if self.getNome() not in loginFornecedores:
+                        loginFornecedores[self.getNome()] = loginPadrao
                         json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
                     
                     else:
@@ -51,7 +52,7 @@ class Fornecedor(Pessoa):
                     
                 
                 else:
-                    loginFornecedores[self.__nomeFornecedor] = loginPadrao
+                    loginFornecedores[self.getNome()] = loginPadrao
                     json.dump(loginFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
             
         

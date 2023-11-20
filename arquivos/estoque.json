@@ -26,5 +26,12 @@
         "preco_de_compra": "100",
         "preco_de_venda": "200",
         "quantidade": 8
+    },
+    "playstation 4": {
+        "marca": "sony",
+        "categoria": "videogame",
+        "preco_de_compra": "2000",
+        "preco_de_venda": "2500",
+        "quantidade": 10
     }
 }
