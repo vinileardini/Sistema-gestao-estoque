@@ -1,25 +1,5 @@
 {
     "vinicius": {
         "senha": "123"
-    },
-    "giovanni": {
-        "senha": "98"
-    },
-    "vin": {
-        "senha": "70"
-    },
-    "luis": {
-        "senha": "432"
-    },
-    "eguinaldo": {
-        "senha": "45"
-    },
-    "felipe": {
-        "registro": "3213213",
-        "senha": "12"
-    },
-    "pedro": {
-        "registro": "3213232654654",
-        "senha": "999"
     }
 }

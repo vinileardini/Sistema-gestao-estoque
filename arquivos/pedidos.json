@@ -152,23 +152,11 @@
             "10"
         ]
     },
-    "8765": {
-        "data abertura": "19/11/2023 17:25:11",
-        "tipo": "entrada",
-        "fornecedor": "vini",
-        "status": "aberto",
-        "itens": [
-            "teclado"
-        ],
-        "qtItens": [
-            "10"
-        ]
-    },
     "090": {
         "data abertura": "19/11/2023 17:41:45",
         "tipo": "entrada",
         "fornecedor": "vini",
-        "status": "aberto",
+        "status": "finalizado",
         "itens": [
             "teclado",
             "camiseta"

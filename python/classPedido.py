@@ -177,9 +177,9 @@ class Pedido:
             #verifica existencia do pedido
             if numeroPedido in conteudoPedido:
                 #verifica status do pedido
-                if conteudoPedido[numeroPedido]["status"] != "finalizado":
+                if conteudoPedido[numeroPedido]["status"] == "aberto":
                     
-                    conteudoPedido[numeroPedido]["status"] = "finalizado"
+                    del(conteudoPedido[numeroPedido])
                     conteudoMov[numeroPedido]["status"] = "finalizado"
                     data_e_hora = datetime.now()
                     conteudoMov[numeroPedido]["data fechamento"] = data_e_hora.strftime('%d/%m/%Y %H:%M:%S')
@@ -195,8 +195,10 @@ class Pedido:
             else:
                 print('Pedido inexistente')
                 json.dump(conteudoPedido,tempPedido,ensure_ascii=False,indent=4)
+                json.dump(conteudoMov,tempMov,ensure_ascii=False,indent=4)
             
         shutil.move(tempPedido.name,'arquivos\pedidos.json')
+        shutil.move(tempMov.name,'arquivos\movimentacoes.json')
                     
            
             

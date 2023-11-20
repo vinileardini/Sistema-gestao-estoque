@@ -156,19 +156,20 @@
         "data abertura": "19/11/2023 17:25:11",
         "tipo": "entrada",
         "fornecedor": "vini",
-        "status": "aberto",
+        "status": "finalizado",
         "itens": [
             "teclado"
         ],
         "qtItens": [
             "10"
-        ]
+        ],
+        "data fechamento": "20/11/2023 09:33:22"
     },
     "090": {
         "data abertura": "19/11/2023 17:41:45",
         "tipo": "entrada",
         "fornecedor": "vini",
-        "status": "aberto",
+        "status": "finalizado",
         "itens": [
             "teclado",
             "camiseta"
@@ -176,7 +177,8 @@
         "qtItens": [
             "10",
             "10"
-        ]
+        ],
+        "data fechamento": "20/11/2023 09:27:41"
     },
     "050": {
         "data abertura": "19/11/2023 20:02:59",
