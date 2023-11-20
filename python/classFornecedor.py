@@ -60,7 +60,7 @@ class Fornecedor(Pessoa):
     #feito
     def getNome(self):
         
-        return Pessoa.getNome()
+        return self.nome
     #feito 
     def getEmail(self):
     
@@ -94,8 +94,6 @@ class Fornecedor(Pessoa):
         print('Telefone:',self.getTelefone())
         print('Produtos:',self.getProdutos())
              
-                
-            
             
     #Métodos de pesquisa fora da classe
 
@@ -203,10 +201,13 @@ class Fornecedor(Pessoa):
                 
                 conteudoArquivo[nome]["produtos"].remove(item)
                 json.dump(conteudoArquivo,tempArquivo,ensure_ascii=False,indent=4)
-                shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
+                
             
             else:
                 print('O fornecedor não apresenta esse produto como opção')
+                json.dump(conteudoArquivo,tempArquivo,ensure_ascii=False,indent=4)
+        
+        shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
 
             
     def listaPedidosForn(nomeFornecedor):
@@ -226,6 +227,7 @@ class Fornecedor(Pessoa):
                     print('*************************************************')
                     print('Número do Pedido:',chave)
                     print('Itens:',conteudoArquivo[chave]["itens"])
+                    print('Quantidade:',conteudoArquivo[chave]["qtItens"])
                     cont += 1
                 else:
                     pass

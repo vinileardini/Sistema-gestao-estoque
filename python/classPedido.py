@@ -230,14 +230,21 @@ class Pedido:
             
             pedidos = json.load(arqPedidos)
             
-            for chave in pedidos.keys():
-                
-                print('*************************************************')
-                print('Número do pedido:',chave)
-                print('Data abertura:',pedidos[chave]["data abertura"])
-                print('Tipo:',pedidos[chave]["tipo"])
-                print('Fornecedor:',pedidos[chave]["fornecedor"])
-                print('Itens:',pedidos[chave]["itens"])
+            if len(pedidos) > 0:
+            
+                for chave in pedidos.keys():
+                    
+                    print('*************************************************')
+                    print('Número do pedido:',chave)
+                    print('Data abertura:',pedidos[chave]["data abertura"])
+                    print('Tipo:',pedidos[chave]["tipo"])
+                    print('Fornecedor:',pedidos[chave]["fornecedor"])
+                    print('Itens:',pedidos[chave]["itens"])
+                    print('Quantidade:',pedidos[chave]["qtItens"])
+            
+            else:
+                print('Não existe pedidos em aberto')
+            
             
 
     def verificarMovimentacao():
@@ -253,9 +260,11 @@ class Pedido:
                 print('*************************************************')
                 print('Numero pedido:',chave)
                 print('Data abertura:',conteudoArquivo[chave]["data abertura"])
+                print('Data de fechamento:',conteudoArquivo[chave]["data fechamento"])
                 print('Tipo movimentacao:',conteudoArquivo[chave]["tipo"])
                 print('Fornecedor:',conteudoArquivo[chave]["fornecedor"])
                 print('Itens:',conteudoArquivo[chave]["itens"])
+                
             
             
             

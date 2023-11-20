@@ -89,30 +89,6 @@ class Produto:
         print(f'Preco de venda: {self.getPrecoVenda()}')
         print(f'Quantidade: {self.getQuantidade()}')
                 
-
-
-
-
-    #Função para retornar todas as informações sobre o produto através de pesquisa
-    def getInfo(tipo,marca):
-        
-        with open('arquivos\estoque.json','r') as arquivo:
-            
-            conteudoArquivo = json.load(arquivo)
-            
-            if tipo in conteudoArquivo:
-                if  conteudoArquivo[tipo]["marca"] == marca:
-                    print('Produto:',tipo)
-                    print('Marca:',conteudoArquivo[tipo]["marca"])
-                    print('Categoria:',conteudoArquivo[tipo]["categoria"])
-                    print('Preço de compra:',conteudoArquivo[tipo]["preco_de_compra"])
-                    print('Preço de venda:',conteudoArquivo[tipo]["preco_de_venda"])
-                    print('Quantidade em estoque:',conteudoArquivo[tipo]["quantidade"])
-                else:
-                    print('Não existe este tipo de produto desta marca no sistema')
-            else:
-                print('O produto não consta no sistema')
-        
     #Função para alteração da categoria do produto através de pesquisa
     def setCategoria(tipoProduto,marca,novaCategoria):
         
@@ -185,11 +161,15 @@ class Produto:
 
             chaves = conteudoArquivo.keys()
             
-            for chaveAtual in chaves:
-                
-                print('Produto:',chaveAtual)
-                print('Quantidade em estoque:',conteudoArquivo[chaveAtual]["quantidade"])
-                print('*************************************************')
+            if len(chaves) > 0:
+            
+                for chaveAtual in chaves:
+                    
+                    print('Produto:',chaveAtual)
+                    print('Quantidade em estoque:',conteudoArquivo[chaveAtual]["quantidade"])
+                    print('*************************************************')
+            else:
+                print('Estoque vazio')
             
 
     def verificaQuantidadeEstoque():

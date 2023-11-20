@@ -1,17 +1,5 @@
 {
-    "A": {
-        "senha": "123"
-    },
-    "B": {
-        "senha": "987"
-    },
     "vini": {
-        "senha": "12345"
-    },
-    "hikelmi": {
-        "senha": "98"
-    },
-    "yuri": {
-        "senha": null
+        "senha": "11"
     }
 }

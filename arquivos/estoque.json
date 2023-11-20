@@ -1,37 +1,23 @@
 {
-    "mouse": {
-        "marca": "logitech",
-        "categoria": "periferico",
-        "preco_de_compra": 80.0,
-        "preco_de_venda": 99.99,
-        "quantidade": 30
-    },
-    "camiseta": {
-        "marca": "polo",
-        "categoria": "vestuario",
-        "preco_de_compra": 70.0,
-        "preco_de_venda": 150.0,
-        "quantidade": 42
-    },
-    "teclado": {
-        "marca": "razer",
-        "categoria": "periferico",
-        "preco_de_compra": "130.00",
-        "preco_de_venda": "250.00",
-        "quantidade": 40
-    },
-    "galaxy buds": {
-        "marca": "samsung",
-        "categoria": "fone de ouvido",
-        "preco_de_compra": "100",
-        "preco_de_venda": "200",
-        "quantidade": 8
-    },
     "playstation 4": {
         "marca": "sony",
         "categoria": "videogame",
-        "preco_de_compra": "2000",
-        "preco_de_venda": "2500",
-        "quantidade": 10
+        "preco_de_compra": "1500",
+        "preco_de_venda": "2000",
+        "quantidade": 7
+    },
+    "playstation 3": {
+        "marca": "sony",
+        "categoria": "videogame",
+        "preco_de_compra": "100",
+        "preco_de_venda": "700",
+        "quantidade": 20
+    },
+    "galaxy s20 fe": {
+        "marca": "samsung",
+        "categoria": "smartphone",
+        "preco_de_compra": "300",
+        "preco_de_venda": "2000",
+        "quantidade": 5
     }
 }

@@ -1,41 +1,11 @@
 {
-    "a": {
-        "telefone": 786,
-        "email": "abc@gmail.com",
-        "produtos": [
-            "asd",
-            "dsads"
-        ]
-    },
-    "b": {
-        "telefone": 456,
-        "email": "12345@gmail.com",
-        "produtos": [
-            "oi",
-            "tchau"
-        ]
-    },
     "vini": {
-        "telefone": "7777777777777777777",
+        "telefone": "1111111111111",
         "email": "vini@outlook.com",
         "produtos": [
-            "mouse",
-            "teclado"
-        ]
-    },
-    "hikelmi": {
-        "telefone": "22222222222222",
-        "email": "hikelmi@gmail.com",
-        "produtos": [
-            "mouse",
-            "fone de ouvido"
-        ]
-    },
-    "yuri": {
-        "telefone": "31231232",
-        "email": "yuri@gmail.com",
-        "produtos": [
-            "mouse"
+            "playstation 4",
+            "playstation 3",
+            "camiseta"
         ]
     }
 }

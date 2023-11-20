@@ -145,7 +145,11 @@ def menu():
                                     
                                     try:
                                         novoProduto = Produto(inputTipo,inputMarca,inputCategoria,inputPrecoCompra,inputPrecoVenda,inputQuantidade)
+                                        print('*************************************************')
+                                        print('Produto cadastrado')
+                                        print('*************************************************')
                                         novoProduto.getInfo()
+                                        
                                     except:
                                         print('*************************************************')
                                         print('Não foi possível cadastrar o produto')
@@ -174,12 +178,13 @@ def menu():
                                         print('*************************************************')
                                         
                                         if escolhaCont == "0":
-                                            print("Encerrando")
+                                            print("Encerrando a inserção de itens")
                                             break
                                         
                                         print('*************************************************')
                                     try:
                                         Fornecedor(inputNomeForn,inputTelefone,inputEmail,itensForn)
+                                        print('Fornecedor cadastrado')
                                     except:
                                         print('Não foi possível cadastrar o fornecedor')
                                     
@@ -230,30 +235,34 @@ def menu():
             senhaFornecedor = input('Senha:')
             
             while True:
-                with open('arquivos\\fornecedor.json','r') as fornecedores,\
-                    tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
-                    
-                    conteudoFornecedores = json.load(fornecedores)
                     try:
-                        if conteudoFornecedores[inputNomeForn]["senha"] == None:
                         
-                            print("É o seu primeiro acesso")
-                            novaSenha = input("Insira a nova senha:")
-                            verificaSenha = input("Insira novamente a senha:")
-                            
-                            if novaSenha == verificaSenha:
-                            
-                                conteudoFornecedores[inputNomeForn]["senha"] = novaSenha
+                        with open('arquivos\\fornecedor.json','r') as fornecedores,\
+                        tempfile.NamedTemporaryFile('w',delete=False) as tempFornecedores:
+                    
+                            conteudoFornecedores = json.load(fornecedores)
                         
+                            if conteudoFornecedores[inputNomeForn]["senha"] == None:
+                            
+                                print("É o seu primeiro acesso")
+                                novaSenha = input("Insira a nova senha:")
+                                verificaSenha = input("Insira novamente a senha:")
+                                
+                                if novaSenha == verificaSenha:
+                                
+                                    conteudoFornecedores[inputNomeForn]["senha"] = novaSenha
+                                    json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
+                            
+                                else:
+                                    print('Fornecedor já cadastrado')
+                                    json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
                             else:
-                                print('Fornecedor já cadastrado')
+                                json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
                     
-                            json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
-                    
-                            shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
+                        shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
                         
                         
-                        elif conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
+                        if conteudoFornecedores[inputNomeForn]["senha"] == senhaFornecedor:
                                 print('*************************************************')            
                                 print('Menu fornecedor')
                                 print('**************************************************')
@@ -340,10 +349,7 @@ def menu():
                         print('Fornecedor não cadastrado')
                         break
                    
-                    json.dump(conteudoFornecedores,tempFornecedores,ensure_ascii=False,indent=4)
                     
-                shutil.move(tempFornecedores.name,'arquivos\\fornecedor.json')
-            
             
             
         elif escolha == '0':

@@ -36,12 +36,13 @@ class Funcionario(Pessoa):
                 
                 else:
                     print('Funcionário já cadastrado')
+                    json.dump(conteudoArq,tempFunc,ensure_ascii=False,indent=4)
                         
         shutil.move(tempFunc.name,'arquivos\\usuario.json') 
             
     def getNome(self):
         
-        return Pessoa.getNome()
+        return self.nome
 
     def getRegistro(self):
 
