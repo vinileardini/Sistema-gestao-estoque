@@ -41,7 +41,7 @@ class Funcionario(Pessoa):
             
     def getNome(self):
         
-        return self.__nome
+        return Pessoa.getNome()
 
     def getRegistro(self):
 

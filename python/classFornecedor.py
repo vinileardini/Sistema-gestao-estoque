@@ -11,7 +11,6 @@ class Fornecedor(Pessoa):
         #Nome através de herança da classe Pessoa
         super().__init__(nome)
         
-        self.__nome = nome
         self.__telefoneFornecedor = telefone
         self.__email = email
         self.__produtos = produtos
@@ -61,7 +60,7 @@ class Fornecedor(Pessoa):
     #feito
     def getNome(self):
         
-        return self.__nome
+        return Pessoa.getNome()
     #feito 
     def getEmail(self):
     
