@@ -10,5 +10,41 @@
         "qtItens": [
             "3"
         ]
+    },
+    "2": {
+        "data abertura": "22/11/2023 10:47:23",
+        "tipo": "saida",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
+            "playstation 3"
+        ],
+        "qtItens": [
+            "3"
+        ]
+    },
+    "3": {
+        "data abertura": "22/11/2023 15:58:26",
+        "tipo": "entrada",
+        "fornecedor": "vini",
+        "status": "aberto",
+        "itens": [
+            "playstation 3"
+        ],
+        "qtItens": [
+            "10"
+        ]
+    },
+    "6": {
+        "data abertura": "22/11/2023 18:22:40",
+        "tipo": "entrada",
+        "fornecedor": "hikelmi",
+        "status": "aberto",
+        "itens": [
+            "iphone 15"
+        ],
+        "qtItens": [
+            "10"
+        ]
     }
 }

@@ -4,14 +4,14 @@
         "categoria": "videogame",
         "preco_de_compra": "1500",
         "preco_de_venda": "2000",
-        "quantidade": 7
+        "quantidade": 13
     },
     "playstation 3": {
         "marca": "sony",
         "categoria": "videogame",
         "preco_de_compra": "100",
         "preco_de_venda": "700",
-        "quantidade": 20
+        "quantidade": 15
     },
     "galaxy s20 fe": {
         "marca": "samsung",
@@ -19,5 +19,12 @@
         "preco_de_compra": "300",
         "preco_de_venda": "2000",
         "quantidade": 5
+    },
+    "iphone 15": {
+        "marca": "apple",
+        "categoria": "smartphone",
+        "preco_de_compra": "3500",
+        "preco_de_venda": "5000",
+        "quantidade": 28
     }
 }

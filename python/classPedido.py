@@ -248,22 +248,25 @@ class Pedido:
             
 
     def verificarMovimentacao():
-        
-        with open('arquivos\movimentacoes.json','r') as arqMov:
-            
-            conteudoArquivo = json.load(arqMov)
-            
-            chaves = conteudoArquivo.keys()
-            
-            for chave in chaves:
+        try:
+            with open('arquivos\movimentacoes.json','r') as arqMov:
                 
-                print('*************************************************')
-                print('Numero pedido:',chave)
-                print('Data abertura:',conteudoArquivo[chave]["data abertura"])
-                print('Data de fechamento:',conteudoArquivo[chave]["data fechamento"])
-                print('Tipo movimentacao:',conteudoArquivo[chave]["tipo"])
-                print('Fornecedor:',conteudoArquivo[chave]["fornecedor"])
-                print('Itens:',conteudoArquivo[chave]["itens"])
+                conteudoArquivo = json.load(arqMov)
+                
+                chaves = conteudoArquivo.keys()
+                
+                for chave in chaves:
+                    
+                    print('*************************************************')
+                    print('Numero pedido:',chave)
+                    print('Data abertura:',conteudoArquivo[chave]["data abertura"])
+                    if "data fechamento" in conteudoArquivo[chave]:
+                        print('Data de fechamento:',conteudoArquivo[chave]["data fechamento"])
+                    print('Tipo movimentacao:',conteudoArquivo[chave]["tipo"])
+                    print('Fornecedor:',conteudoArquivo[chave]["fornecedor"])
+                    print('Itens:',conteudoArquivo[chave]["itens"])
+        except:
+            print('Não foi possivel verificar as movimentações')
                 
             
             
@@ -315,7 +318,7 @@ class Pedido:
             print("Produto não cadastrado")
             
     
-    def verificaQtEstoque(tipoProduto,quantidade):
+    def verificaQtEstoque(tipoProduto,tipoPedido,quantidade):
         
         try:
             with open('arquivos\estoque.json') as arqEstoque:
@@ -323,14 +326,17 @@ class Pedido:
                 conteudoArquivo = json.load(arqEstoque)
                 
                 quantidadeEstoque = conteudoArquivo[tipoProduto]["quantidade"]
-                
-                if int(quantidade) <= quantidadeEstoque:
+                if tipoPedido == 'saida':
+                    if int(quantidade) <= quantidadeEstoque:
+                        
+                        return True
                     
+                    else:
+                        print('Não existe essa quantidade deste produto em estoque neste momento')
+                        return False
+                elif tipoPedido ==  'entrada':
                     return True
-                
-                else:
-                    print('Não existe essa quantidade deste produto em estoque neste momento')
-                    return False
+                    pass
                 
         except:
             print('Produto não cadastrado')

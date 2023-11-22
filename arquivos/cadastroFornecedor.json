@@ -1,3 +1,4 @@
+
 {
     "vini": {
         "telefone": "1111111111111",
@@ -6,6 +7,14 @@
             "playstation 4",
             "playstation 3",
             "camiseta"
+        ]
+    },
+    "hikelmi": {
+        "telefone": "22222222",
+        "email": "hikelmi@gmail.com",
+        "produtos": [
+            "iphone 15",
+            "galaxy s20 fe"
         ]
     }
 }

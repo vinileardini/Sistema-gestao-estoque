@@ -72,7 +72,7 @@ def menu():
                                         inputItem = input('Insira o item no pedido:')
                                         inputQtItem = input('Insira a quantidade do item:')
                                         
-                                        if Pedido.verificaQtEstoque(inputItem,inputQtItem) == True:
+                                        if Pedido.verificaQtEstoque(inputItem,inputTipo,inputQtItem) == True:
                                             itens.append(inputItem)
                                             qtItens.append(inputQtItem)
                                         else:

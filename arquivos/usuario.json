@@ -1,10 +1,14 @@
 {
     "vinicius": {
-        "registro":"1",
+        "registro": "1",
         "senha": "123"
     },
     "giovanni": {
         "registro": "123123",
         "senha": "99"
+    },
+    "camargo": {
+        "registro": "32",
+        "senha": "01"
     }
 }
