@@ -137,6 +137,7 @@ class Pedido:
 
     #Pesquisas 
 
+    # função para pesquisar a existência de um pedido
     def pesquisaPedido(numeroPedido):
 
         arquivoPedido = open('arquivos\pedidos.json','r')
@@ -150,7 +151,7 @@ class Pedido:
         else:
             print(f'Pedido {numeroPedido} inexistente')
 
-
+    # função para buscar o status do pedido (aberto/finalizado)
     def getStatus(numeroPedido):
 
         arquivoPedido = open('arquivos\pedidos.json','r')
@@ -163,7 +164,7 @@ class Pedido:
         else:
             print('Pedido inexistente')
 
-    # Pronto
+    # função para o encerramento de um pedido
     def encerrarPedido(numeroPedido):
 
         with open('arquivos\pedidos.json','r') as arquivoPedido,\
@@ -205,7 +206,7 @@ class Pedido:
                                 
                                 
 
-    # função para excluir um pedido (pronto)
+    # função para excluir um pedido
     def excluiPedido(numeroPedido):
 
         with open('arquivos\pedidos.json','r') as arquivoPedido,\
@@ -223,7 +224,8 @@ class Pedido:
                 print('Pedido inexistente')
 
         shutil.move(tempPedido.name,'arquivos\pedidos.json')
-
+        
+    # função para listar os pedidos 
     def listarPedidos():
         
         with open('arquivos\pedidos.json','r') as arqPedidos:
@@ -246,7 +248,7 @@ class Pedido:
                 print('Não existe pedidos em aberto')
             
             
-
+    # função para verificar a movimentação 
     def verificarMovimentacao():
         try:
             with open('arquivos\movimentacoes.json','r') as arqMov:
@@ -271,7 +273,7 @@ class Pedido:
             
             
             
-
+    # função para realizar a adição de itens no estoque no caso do tipo do pedido for entrada
     def pedidoEntrada(tipoProduto,quantidade):
         try:
             with open('arquivos\estoque.json','r') as arqEstoque,\
@@ -289,7 +291,7 @@ class Pedido:
         except:
             print("Produto não cadastrado")
             
-
+    # função para retirar itens no estoque caso o tipo de pedido seja saída
     def pedidoSaida(tipoProduto,quantidade):   
 
         try:    
@@ -317,7 +319,7 @@ class Pedido:
         except:
             print("Produto não cadastrado")
             
-    
+    # função para verificar a quantidade de itens no estoque para que seja possível realizar pedido de saída
     def verificaQtEstoque(tipoProduto,tipoPedido,quantidade):
         
         try:

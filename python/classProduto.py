@@ -153,7 +153,7 @@ class Produto:
         shutil.move(tempPrecoVenda.name,'arquivos\estoque.json') 
 
         
-
+    # Função para verificar a quantidade de cada item em estoque
     def verificaEstoque():
         
         with open('arquivos\estoque.json','r') as arquivo:
@@ -171,7 +171,7 @@ class Produto:
             else:
                 print('Estoque vazio')
             
-
+    # Função para verificar a baixa quantidade de itens no estoque
     def verificaQuantidadeEstoque():
         
         with open('arquivos\estoque.json','r') as arquivo:

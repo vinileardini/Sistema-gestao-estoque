@@ -95,8 +95,8 @@ class Fornecedor(Pessoa):
         print('Produtos:',self.getProdutos())
              
             
-    #Métodos de pesquisa fora da classe
-
+   
+    # Função que retorna as informações do fornecedor que está "logado" no sistema
     def getInfoFornecedor(nome):
             
         with open('arquivos\cadastroFornecedor.json','r') as arquivo:
@@ -114,7 +114,7 @@ class Fornecedor(Pessoa):
 
 
 
-    #Feito
+    # Função para alteração do email do fornecedor
     def setEmailFornecedor(nome,novoEmail):
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
@@ -131,7 +131,7 @@ class Fornecedor(Pessoa):
                 
         shutil.move(alteracaoEmail.name,'arquivos\cadastroFornecedor.json') 
 
-
+    # Função para alteração do telefone do fornecedor
     def setTelefoneFornecedor(nome,novoTelefone):
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
@@ -148,7 +148,7 @@ class Fornecedor(Pessoa):
 
         shutil.move(alteracaoTelefone.name,'arquivos\cadastroFornecedor.json')
 
-    #Feito
+    # Função adicionar produto oferecido pelo fornecedor
     def setProdutosFornecedor(nome):
         
         with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
@@ -189,7 +189,7 @@ class Fornecedor(Pessoa):
                 
         shutil.move(alteraProduto.name,'arquivos\cadastroFornecedor.json')
                     
-
+    # Função para remover item oferecido pelo fornecedor
     def removeItem(nome,item):
 
         with open('arquivos\cadastroFornecedor.json','r') as arquivo,\
@@ -209,7 +209,7 @@ class Fornecedor(Pessoa):
         
         shutil.move(tempArquivo.name,'arquivos\cadastroFornecedor.json')
 
-            
+    # Função que retorna os pedidos atrelados ao fornecedor "logado" no sistema
     def listaPedidosForn(nomeFornecedor):
         
         with open('arquivos\pedidos.json','r') as arquivoPedidos:
